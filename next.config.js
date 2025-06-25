@@ -7,6 +7,12 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
 
+  images: {
+    domains: ['images.unsplash.com'],
+  },
+
+  transpilePackages: ['geist'],
+
   // Uncoment to add domain whitelist
   // images: {
   //   remotePatterns: [

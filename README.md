@@ -3,7 +3,7 @@
 <div align="center">
   <h2>🔋 ts-nextjs-tailwind-starter</h2>
   <p>Next.js + Tailwind CSS + TypeScript starter packed with useful development features.</p>
-  <p>Made by <a href="https://theodorusclarence.com">Theodorus Clarence</a></p>
+  <p>Made by <a href="https://invest.hydrokken.com">Theodorus Clarence</a></p>
 
 [![GitHub Repo stars](https://img.shields.io/github/stars/theodorusclarence/ts-nextjs-tailwind-starter)](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/stargazers)
 [![Depfu](https://badges.depfu.com/badges/fc6e730632ab9dacaf7df478a08684a7/overview.svg)](https://depfu.com/github/theodorusclarence/ts-nextjs-tailwind-starter?project_id=30160)
@@ -19,7 +19,7 @@ This repository is 🔋 battery packed with:
 - ⚛️ React 18
 - ✨ TypeScript
 - 💨 Tailwind CSS 3 — Configured with CSS Variables to extend the **primary** color
-- 💎 Pre-built Components — Components that will **automatically adapt** with your brand color, [check here for the demo](https://tsnext-tw.thcl.dev/components)
+- 💎 Pre-built Components — Components that will **automatically adapt** with your brand color, [check here for the demo](https://invest.hydrokken.com/components)
 - 🃏 Jest — Configured for unit testing
 - 📈 Absolute Import and Path Alias — Import components using `@/` prefix
 - 📏 ESLint — Find and fix problems in your code, also will **auto sort** your imports
@@ -38,7 +38,7 @@ See the 👉 [feature details and changelog](https://github.com/theodorusclarenc
 
 You can also check all of the **details and demos** on my blog post:
 
-- [One-stop Starter to Maximize Efficiency on Next.js & Tailwind CSS Projects](https://theodorusclarence.com/blog/one-stop-starter)
+- [One-stop Starter to Maximize Efficiency on Next.js & Tailwind CSS Projects](https://invest.hydrokken.com/blog/one-stop-starter)
 
 ## Getting Started
 
@@ -112,7 +112,7 @@ TEMPLATE
 - [sitename](https://sitelink.com)
 -->
 
-- [theodorusclarence.com](https://theodorusclarence.com) ([Source](https://github.com/theodorusclarence/theodorusclarence.com))
+- [theodorusclarence.com](https://invest.hydrokken.com) ([Source](https://github.com/theodorusclarence/theodorusclarence.com))
 - [Notiolink](https://notiolink.thcl.dev/) ([Source](https://github.com/theodorusclarence/notiolink))
 - [NextJs + Materia UI + Typescript](https://github.com/AlexStack/nextjs-materia-mui-typescript-hook-form-scaffold-boilerplate-starter)
 
