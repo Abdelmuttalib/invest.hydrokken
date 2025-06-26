@@ -1,19 +1,19 @@
-'use client';
-
 import {
   ArrowRight,
   Atom,
   Award,
   BarChart3,
   Battery,
+  Building2,
   CheckCircle,
   Clock,
   Coins,
+  ExternalLink,
+  FileCheck,
   Globe,
   Leaf,
   Lock,
   Network,
-  Play,
   Shield,
   TrendingUp,
   Users,
@@ -24,13 +24,14 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
-import { useEffect, useState } from 'react';
 import '@/lib/env';
+
+import { ctaLink } from '@/lib/cta';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { TokensInputs } from '@/components/views/home';
 
 /**
  * SVGR Support
@@ -41,44 +42,6 @@ import { Input } from '@/components/ui/input';
  */
 
 export default function HomePage() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  const [usdtAmount, setUsdtAmount] = useState('');
-  const [hdknAmount, setHdknAmount] = useState('0.00');
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const targetDate = new Date('2024-12-31').getTime();
-      const difference = targetDate - now;
-
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-      setTimeLeft({ days, hours, minutes, seconds });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    if (usdtAmount) {
-      const hdkn = Number.parseFloat(usdtAmount) / 34;
-      setHdknAmount(hdkn.toFixed(4));
-    } else {
-      setHdknAmount('0.00');
-    }
-  }, [usdtAmount]);
-
   return (
     <main>
       <Head>
@@ -182,7 +145,7 @@ export default function HomePage() {
 
                       <div className='w-full h-px bg-gradient-to-r from-emerald-400 to-transparent'></div>
 
-                      {/* <p className="text-lg text-zinc-400 font-extralight leading-relaxed tracking-wide">
+                      {/* <p className="text-lg text-zinc-400 font-light leading-relaxed tracking-wide">
                       HDKN merges sustainable energy production with
                       cutting-edge blockchain technology, enabling investors to
                       participate in the natural hydrogen revolution while
@@ -192,7 +155,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Key Features */}
-                  <div className='grid grid-cols-2 gap-8'>
+                  <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
                     <div className='space-y-3'>
                       <div className='flex items-center space-x-3'>
                         <Atom className='h-6 w-6 text-emerald-400' />
@@ -200,7 +163,7 @@ export default function HomePage() {
                           Natural Hydrogen Backed
                         </span>
                       </div>
-                      <p className='text-zinc-400 text-sm font-extralight'>
+                      <p className='text-zinc-400'>
                         Real asset backing with verified reserves
                       </p>
                     </div>
@@ -211,7 +174,7 @@ export default function HomePage() {
                           Security Token
                         </span>
                       </div>
-                      <p className='text-zinc-400 text-sm font-extralight'>
+                      <p className='text-zinc-400'>
                         Regulatory compliant investment vehicle
                       </p>
                     </div>
@@ -222,7 +185,7 @@ export default function HomePage() {
                           Clean Energy
                         </span>
                       </div>
-                      <p className='text-zinc-400 text-sm font-extralight'>
+                      <p className='text-zinc-400'>
                         Zero-emission sustainable production
                       </p>
                     </div>
@@ -233,7 +196,7 @@ export default function HomePage() {
                           Financial Returns
                         </span>
                       </div>
-                      <p className='text-zinc-400 text-sm font-extralight'>
+                      <p className='text-zinc-400'>
                         Dual benefit: profit and impact
                       </p>
                     </div>
@@ -243,17 +206,12 @@ export default function HomePage() {
                     <Button
                       size='lg'
                       className='bg-emerald-500 hover:bg-emerald-600 text-black font-medium px-12 py-4 text-lg tracking-[0.1em] uppercase transition-all duration-300 shadow-xl shadow-emerald-500/20'
+                      asChild
                     >
-                      Buy HDKN Now
-                      <ArrowRight className='ml-3 h-5 w-5' />
-                    </Button>
-                    <Button
-                      size='lg'
-                      variant='outline'
-                      className='border border-zinc-600/50 text-white hover:bg-zinc-900/50 hover:border-emerald-500/50 font-light px-12 py-4 text-lg tracking-[0.1em] uppercase transition-all duration-300'
-                    >
-                      <Play className='mr-3 h-5 w-5' />
-                      Learn More
+                      <a href={ctaLink} target='_blank' rel='noreferrer'>
+                        Buy HDKN Now Buy HDKN Now
+                        <ArrowRight className='ml-3 h-5 w-5' />
+                      </a>
                     </Button>
                   </div>
                 </div>
@@ -276,47 +234,6 @@ export default function HomePage() {
                   </div> */}
 
                     <div className='p-8 space-y-8'>
-                      {/* Countdown Timer */}
-                      <div className='text-center'>
-                        <h4 className='text-lg font-medium text-white tracking-wide'>
-                          Presale Ends In
-                        </h4>
-                        <div className='grid grid-cols-4 gap-3'>
-                          <div className='bg-black/40 rounded-xl p-4 border border-zinc-700/50'>
-                            <div className='text-2xl font-bold text-emerald-400'>
-                              {timeLeft.days}
-                            </div>
-                            <div className='text-xs text-zinc-400 uppercase tracking-wider'>
-                              Days
-                            </div>
-                          </div>
-                          <div className='bg-black/40 rounded-xl p-4 border border-zinc-700/50'>
-                            <div className='text-2xl font-bold text-emerald-400'>
-                              {timeLeft.hours}
-                            </div>
-                            <div className='text-xs text-zinc-400 uppercase tracking-wider'>
-                              Hours
-                            </div>
-                          </div>
-                          <div className='bg-black/40 rounded-xl p-4 border border-zinc-700/50'>
-                            <div className='text-2xl font-bold text-emerald-400'>
-                              {timeLeft.minutes}
-                            </div>
-                            <div className='text-xs text-zinc-400 uppercase tracking-wider'>
-                              Min
-                            </div>
-                          </div>
-                          <div className='bg-black/40 rounded-xl p-4 border border-zinc-700/50'>
-                            <div className='text-2xl font-bold text-emerald-400'>
-                              {timeLeft.seconds}
-                            </div>
-                            <div className='text-xs text-zinc-400 uppercase tracking-wider'>
-                              Sec
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
                       {/* Progress Section */}
                       <div className='bg-black/30 rounded-2xl p-6 border border-zinc-800/50'>
                         <div className='space-y-4'>
@@ -399,59 +316,17 @@ export default function HomePage() {
                         </div>
 
                         <div className='grid grid-cols-2 gap-4'>
-                          <div className='space-y-3'>
-                            <label className='text-sm text-zinc-300 font-medium'>
-                              You Pay (USDT)
-                            </label>
-                            <div className='relative'>
-                              <Input
-                                type='number'
-                                placeholder='0.0'
-                                value={usdtAmount}
-                                onChange={(e) => setUsdtAmount(e.target.value)}
-                                className='bg-black/40 border-zinc-700/50 text-white text-lg font-semibold h-14 pr-16 focus:border-emerald-500/50 focus:ring-emerald-500/20'
-                              />
-                              <div className='absolute right-4 top-1/2 transform -translate-y-1/2 text-zinc-400 text-sm font-medium'>
-                                USDT
-                              </div>
-                            </div>
-                          </div>
-                          <div className='space-y-3'>
-                            <label className='text-sm text-zinc-300 font-medium'>
-                              You Receive
-                            </label>
-                            <div className='relative'>
-                              <Input
-                                type='text'
-                                value={hdknAmount}
-                                readOnly
-                                className='bg-emerald-500/10 border-emerald-500/30 text-emerald-400 text-lg font-semibold h-14 pr-16'
-                              />
-                              <div className='absolute right-4 top-1/2 transform -translate-y-1/2 text-emerald-400 text-sm font-medium'>
-                                HDKN
-                              </div>
-                            </div>
-                          </div>
+                          <TokensInputs />
                         </div>
 
                         <div className='space-y-4'>
-                          <Button className='w-full bg-zinc-800/80 hover:bg-zinc-700 border border-zinc-600/50 text-white font-semibold py-4 text-lg tracking-wide uppercase transition-all duration-300 hover:border-zinc-500'>
-                            <Wallet className='mr-3 h-5 w-5' />
-                            Connect Wallet
-                          </Button>
-                          <Button className='w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-black font-bold py-4 text-lg tracking-wide uppercase transition-all duration-300 shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/40'>
+                          <Button className='w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-black font-bold py-7 text-lg tracking-wide uppercase transition-all duration-300 shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/40'>
                             Buy HDKN Now
                             <ArrowRight className='ml-3 h-5 w-5' />
                           </Button>
                         </div>
 
                         <div className='text-center space-y-3'>
-                          <Link
-                            href='#'
-                            className='text-emerald-400 text-sm hover:text-emerald-300 transition-colors font-medium'
-                          >
-                            Add HDKN to MetaMask →
-                          </Link>
                           <div className='flex items-center justify-center space-x-4 text-xs text-zinc-500'>
                             <span>Affiliate Program</span>
                             <span>•</span>
@@ -611,6 +486,190 @@ export default function HomePage() {
             </div>
           </section>
 
+          {/* About Hydrokken Company */}
+          <section id='about' className='w-full py-40 bg-zinc-950/30'>
+            <div className='container px-8 md:px-12 max-w-8xl mx-auto'>
+              <div className='text-center mb-20'>
+                <Badge className='bg-blue-500/20 text-blue-400 border-blue-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
+                  Company Overview
+                </Badge>
+                <h2 className='text-4xl md:text-6xl font-light text-white tracking-tight leading-tight mb-8'>
+                  About
+                  <span className='block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 font-light mt-4'>
+                    Hydrokken
+                  </span>
+                </h2>
+                <p className='text-xl text-zinc-300 font-extralight leading-relaxed max-w-4xl mx-auto tracking-wide'>
+                  The world's first security token fully backed 1-to-1 by shares
+                  in a natural hydrogen company, bridging clean energy and
+                  decentralized finance with full legal structure and investor
+                  protection.
+                </p>
+              </div>
+
+              <div className='grid lg:grid-cols-2 gap-20 items-center mb-20'>
+                <div className='space-y-12'>
+                  <div className='space-y-8'>
+                    <h3 className='text-4xl font-light text-white tracking-wide'>
+                      Our Foundation
+                    </h3>
+                    <div className='w-24 h-px bg-gradient-to-r from-blue-400 to-transparent'></div>
+                    <p className='text-lg text-zinc-300 font-extralight leading-relaxed tracking-wide'>
+                      Hydrokken originates from Krechendo Managers, which owns
+                      500,000 shares in Hydroma Inc., the global pioneer in
+                      natural hydrogen exploration. These shares—representing
+                      approximately 0.264% of Hydroma Inc.—have been tokenized
+                      using Brickken's security token infrastructure.
+                    </p>
+                  </div>
+
+                  <div className='space-y-8'>
+                    <div className='flex items-start space-x-6'>
+                      <div className='w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <Building2 className='h-6 w-6 text-blue-400' />
+                      </div>
+                      <div className='space-y-3'>
+                        <h4 className='text-xl font-light text-white'>
+                          Real Equity Backing
+                        </h4>
+                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                          Each Hydrokken token represents 100% of the rights
+                          attached to one Hydroma share—including economic
+                          rights, dividends, and exit proceeds. No abstraction,
+                          no inflation.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className='flex items-start space-x-6'>
+                      <div className='w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <Globe className='h-6 w-6 text-blue-400' />
+                      </div>
+                      <div className='space-y-3'>
+                        <h4 className='text-xl font-light text-white'>
+                          Global Impact
+                        </h4>
+                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                          Addressing the historic demand for verified ESG
+                          investment opportunities, asset-backed tokens with
+                          legal clarity, and clean energy alternatives with
+                          strong fundamentals.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className='flex items-start space-x-6'>
+                      <div className='w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <Users className='h-6 w-6 text-blue-400' />
+                      </div>
+                      <div className='space-y-3'>
+                        <h4 className='text-xl font-light text-white'>
+                          Leadership
+                        </h4>
+                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                          Led by Mostafa Belkhayate, founder of Springbox AI and
+                          world-renowned trading innovator, embodying a new
+                          class of financial innovation where clean energy meets
+                          intelligent capital.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='relative'>
+                  <Image
+                    src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                    alt="Modern corporate headquarters representing Hydrokken's professional foundation"
+                    width={600}
+                    height={400}
+                    className='rounded-3xl'
+                  />
+                  <div className='absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-3xl'></div>
+                  <div className='absolute bottom-8 left-8 right-8'>
+                    <div className='bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-zinc-700/50'>
+                      <h4 className='text-white font-medium mb-4'>
+                        What Makes Hydrokken Unique
+                      </h4>
+                      <div className='space-y-3 text-sm'>
+                        <div className='flex items-center space-x-3'>
+                          <CheckCircle className='h-4 w-4 text-emerald-400 flex-shrink-0' />
+                          <span className='text-zinc-300'>
+                            1 Token = 1 Hydroma Share
+                          </span>
+                        </div>
+                        <div className='flex items-center space-x-3'>
+                          <CheckCircle className='h-4 w-4 text-emerald-400 flex-shrink-0' />
+                          <span className='text-zinc-300'>
+                            Tokenized by Brickken (EU Regulated)
+                          </span>
+                        </div>
+                        <div className='flex items-center space-x-3'>
+                          <CheckCircle className='h-4 w-4 text-emerald-400 flex-shrink-0' />
+                          <span className='text-zinc-300'>
+                            Powered by Springbox AI
+                          </span>
+                        </div>
+                        <div className='flex items-center space-x-3'>
+                          <CheckCircle className='h-4 w-4 text-emerald-400 flex-shrink-0' />
+                          <span className='text-zinc-300'>
+                            Environmental Utility & CO₂ Calculator
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Target Audience */}
+              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
+                <Card className='bg-neutral-900/50 border-zinc-800/30 p-6'>
+                  <CardContent className='space-y-4'>
+                    <TrendingUp className='h-8 w-8 text-blue-400' />
+                    <h4 className='text-white font-medium'>ESG Investors</h4>
+                    <p className='text-zinc-400 text-sm font-extralight'>
+                      Seeking verifiable impact and sustainable investment
+                      opportunities
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className='bg-neutral-900/50 border-zinc-800/30 p-6'>
+                  <CardContent className='space-y-4'>
+                    <Building2 className='h-8 w-8 text-emerald-400' />
+                    <h4 className='text-white font-medium'>
+                      Institutional Investors
+                    </h4>
+                    <p className='text-zinc-400 text-sm font-extralight'>
+                      Interested in real-world asset (RWA) tokens with legal
+                      clarity
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className='bg-neutral-900/50 border-zinc-800/30 p-6'>
+                  <CardContent className='space-y-4'>
+                    <Globe className='h-8 w-8 text-purple-400' />
+                    <h4 className='text-white font-medium'>Web3 Communities</h4>
+                    <p className='text-zinc-400 text-sm font-extralight'>
+                      Seeking legally compliant tokens with real utility
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className='bg-neutral-900/50 border-zinc-800/30 p-6'>
+                  <CardContent className='space-y-4'>
+                    <Users className='h-8 w-8 text-amber-400' />
+                    <h4 className='text-white font-medium'>
+                      Sustainability Leaders
+                    </h4>
+                    <p className='text-zinc-400 text-sm font-extralight'>
+                      Promoting clean energy and environmental responsibility
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
           {/* What is Natural Hydrogen */}
           <section id='hydrogen' className='w-full py-40 relative'>
             <div className='absolute inset-0'>
@@ -660,7 +719,7 @@ export default function HomePage() {
                       <h3 className='text-5xl font-light tracking-wide'>
                         The Clean Energy Revolution
                       </h3>
-                      <div className='w-24 h-px bg-gradient-to-r from-emerald-400 to-transparent'></div>
+                      <div className='w-1/2 h-px bg-gradient-to-r from-emerald-400 to-transparent'></div>
                       <p className='text-xl text-zinc-200 font-extralight leading-relaxed tracking-wide'>
                         Unlike traditional hydrogen production methods that
                         require significant energy input, natural hydrogen is
@@ -672,8 +731,8 @@ export default function HomePage() {
                     <div className='space-y-8'>
                       {/* Item 1 */}
                       <div className='flex items-start space-x-6'>
-                        <div className='w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center'>
-                          <Zap className='h-6 w-6 text-emerald-400' />
+                        <div className='w-12 flex-shrink-0 h-12 bg-emerald-500/20 border border-emerald-400/30 rounded-xl flex items-center justify-center'>
+                          <Zap className='h-7 w-7 text-emerald-400' />
                         </div>
                         <div className='space-y-3'>
                           <h4 className='text-2xl font-light'>
@@ -687,8 +746,8 @@ export default function HomePage() {
                       </div>
                       {/* Item 2 */}
                       <div className='flex items-start space-x-6'>
-                        <div className='w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center'>
-                          <Battery className='h-6 w-6 text-emerald-400' />
+                        <div className='w-12 flex-shrink-0 h-12 bg-emerald-500/20 border border-emerald-400/30 rounded-xl flex items-center justify-center'>
+                          <Battery className='h-7 w-7 text-emerald-400' />
                         </div>
                         <div className='space-y-3'>
                           <h4 className='text-2xl font-light'>
@@ -702,8 +761,8 @@ export default function HomePage() {
                       </div>
                       {/* Item 3 */}
                       <div className='flex items-start space-x-6'>
-                        <div className='w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center'>
-                          <Globe className='h-6 w-6 text-emerald-400' />
+                        <div className='w-12 flex-shrink-0 h-12 bg-emerald-500/20 border border-emerald-400/30 rounded-xl flex items-center justify-center'>
+                          <Globe className='h-7 w-7 text-emerald-400' />
                         </div>
                         <div className='space-y-3'>
                           <h4 className='text-2xl font-light'>Global Impact</h4>
@@ -718,12 +777,12 @@ export default function HomePage() {
                 </div>
               </div>
               {/* Statistics */}
-              <div className='grid grid-cols-2 md:grid-cols-4 gap-8'>
+              <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8'>
                 <div className='text-center space-y-4'>
                   <div className='text-4xl font-light text-emerald-400'>
                     100%
                   </div>
-                  <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
+                  <div className='text-zinc-200 uppercase tracking-wide'>
                     Clean Energy
                   </div>
                 </div>
@@ -731,7 +790,7 @@ export default function HomePage() {
                   <div className='text-4xl font-light text-emerald-400'>
                     $1.2B+
                   </div>
-                  <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
+                  <div className='text-zinc-200 uppercase tracking-wide'>
                     Reserve Value
                   </div>
                 </div>
@@ -739,14 +798,168 @@ export default function HomePage() {
                   <div className='text-4xl font-light text-emerald-400'>
                     Zero
                   </div>
-                  <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
+                  <div className='text-zinc-200 uppercase tracking-wide'>
                     Emissions
                   </div>
                 </div>
                 <div className='text-center space-y-4'>
                   <div className='text-4xl font-light text-emerald-400'>∞</div>
-                  <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
+                  <div className='text-zinc-200 uppercase tracking-wide'>
                     Potential
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id='performance' className='w-full py-40 relative'>
+            <div className='absolute inset-0'>
+              <Image
+                src='https://images.unsplash.com/photo-1642790106117-e829e14a795f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80'
+                alt='Abstract financial data visualization with glowing elements'
+                fill
+                className='object-cover opacity-15'
+              />
+              <div className='absolute inset-0 bg-black/80'></div>
+            </div>
+            <div className='container px-8 md:px-12 max-w-8xl mx-auto relative'>
+              <div className='text-center mb-24'>
+                <div className='inline-flex items-center space-x-4 mb-12'>
+                  <div className='w-1 h-1 bg-emerald-400 rounded-full'></div>
+                  <Badge className='bg-transparent text-emerald-400 border-emerald-500/30 px-8 py-3 text-sm font-light tracking-[0.15em] uppercase'>
+                    Unprecedented Performance
+                  </Badge>
+                  <div className='w-1 h-1 bg-emerald-400 rounded-full'></div>
+                </div>
+                <h2 className='text-6xl md:text-8xl font-extralight text-white tracking-tight leading-tight mb-8'>
+                  Market
+                  <span className='block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 font-thin mt-4'>
+                    Dominance
+                  </span>
+                </h2>
+                <p className='text-xl text-zinc-300 font-extralight leading-relaxed max-w-4xl mx-auto tracking-wide'>
+                  HYDROKKEN&apos;s inaugural performance establishes new
+                  benchmarks for institutional cryptocurrency investment,
+                  demonstrating unparalleled market confidence and execution
+                  excellence.
+                </p>
+              </div>
+
+              <div className='grid grid-cols-1 lg:grid-cols-2 gap-20'>
+                {/* Round A Success */}
+                <div className='space-y-12'>
+                  <div className='space-y-8'>
+                    <div className='flex items-center space-x-6'>
+                      <div className='w-4 h-4 bg-emerald-400 rounded-full'></div>
+                      <span className='text-emerald-400 font-light text-sm tracking-[0.2em] uppercase'>
+                        Round A • Complete Success
+                      </span>
+                    </div>
+                    <h3 className='text-5xl md:text-6xl font-extralight text-white tracking-tight leading-tight'>
+                      Sold Out in
+                      <span className='block text-zinc-300 font-thin mt-2'>
+                        24 Hours
+                      </span>
+                    </h3>
+                  </div>
+                  <div className='space-y-8'>
+                    <div className='flex justify-between items-center py-6 border-b border-zinc-800/30'>
+                      <span className='text-zinc-400 font-extralight tracking-wide text-lg'>
+                        Total Capital Raised
+                      </span>
+                      <span className='text-emerald-400 font-light text-2xl tracking-wide'>
+                        $3,050,000 USDT
+                      </span>
+                    </div>
+                    <div className='flex justify-between items-center py-6 border-b border-zinc-800/30'>
+                      <span className='text-zinc-400 font-extralight tracking-wide text-lg'>
+                        Market Response
+                      </span>
+                      <span className='text-white font-light text-2xl tracking-wide'>
+                        24 Hours
+                      </span>
+                    </div>
+                    <div className='flex justify-between items-center py-6 border-b border-zinc-800/30'>
+                      <span className='text-zinc-400 font-extralight tracking-wide text-lg'>
+                        Allocation Status
+                      </span>
+                      <span className='text-white font-light text-2xl tracking-wide'>
+                        100% Filled
+                      </span>
+                    </div>
+                    <div className='flex justify-between items-center py-6'>
+                      <span className='text-zinc-400 font-extralight tracking-wide text-lg'>
+                        Investor Demand
+                      </span>
+                      <span className='text-emerald-400 font-light text-2xl tracking-wide'>
+                        340% Oversubscribed
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Round B Opportunity */}
+                <div className='space-y-12'>
+                  <div className='space-y-8'>
+                    <div className='flex items-center space-x-6'>
+                      <div className='w-4 h-4 bg-zinc-600 rounded-full'></div>
+                      <span className='text-zinc-400 font-light text-sm tracking-[0.2em] uppercase'>
+                        Round B • Exclusive Access
+                      </span>
+                    </div>
+                    <h3 className='text-5xl md:text-6xl font-extralight text-white tracking-tight leading-tight'>
+                      Investment
+                      <span className='block text-zinc-300 font-thin mt-2'>
+                        Excellence
+                      </span>
+                    </h3>
+                  </div>
+                  <div className='bg-zinc-950/50 rounded-3xl border border-zinc-800/30 p-12'>
+                    <div className='space-y-8'>
+                      <div className='flex justify-between items-center py-4 border-b border-zinc-800/30'>
+                        <span className='text-zinc-400 font-extralight tracking-wide'>
+                          Token Valuation
+                        </span>
+                        <span className='text-emerald-400 font-light text-xl tracking-wide'>
+                          $32 USDT
+                        </span>
+                      </div>
+                      <div className='flex justify-between items-center py-4 border-b border-zinc-800/30'>
+                        <span className='text-zinc-400 font-extralight tracking-wide'>
+                          Entry Threshold
+                        </span>
+                        <span className='text-white font-light text-xl tracking-wide'>
+                          $320 USDT
+                        </span>
+                      </div>
+                      <div className='flex justify-between items-center py-4 border-b border-zinc-800/30'>
+                        <span className='text-zinc-400 font-extralight tracking-wide'>
+                          Maximum Allocation
+                        </span>
+                        <span className='text-white font-light text-xl tracking-wide'>
+                          $3,000,000 USDT
+                        </span>
+                      </div>
+                      <div className='flex justify-between items-center py-4 border-b border-zinc-800/30'>
+                        <span className='text-zinc-400 font-extralight tracking-wide'>
+                          Token Supply
+                        </span>
+                        <span className='text-white font-light text-xl tracking-wide'>
+                          100,000 HDKN
+                        </span>
+                      </div>
+                      <div className='flex justify-between items-center py-4'>
+                        <span className='text-zinc-400 font-extralight tracking-wide'>
+                          Launch Timeline
+                        </span>
+                        <span className='text-white font-light text-xl tracking-wide'>
+                          Q2 2024
+                        </span>
+                      </div>
+                    </div>
+                    <Button className='w-full bg-emerald-500 hover:bg-emerald-600 text-black font-medium py-5 text-lg tracking-[0.1em] uppercase mt-8 transition-all duration-300'>
+                      Secure Position
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -757,12 +970,12 @@ export default function HomePage() {
           <section id='technology' className='w-full py-40 bg-zinc-950/30'>
             <div className='container px-8 md:px-12 max-w-8xl mx-auto'>
               <div className='text-center mb-20'>
-                <Badge className='bg-blue-900/10 text-blue-400 border-blue-500/30 mb-2 px-6 py-3 tracking-[0.15em] uppercase'>
+                <Badge className='bg-blue-900/10 text-blue-400 border-blue-500/30 mb-4 sm:mb-2 px-6 py-3 tracking-[0.15em] uppercase'>
                   Cutting-Edge Technology
                 </Badge>
                 <h2 className='text-6xl md:text-7xl font-light text-white tracking-tight leading-tight mb-8'>
                   Blockchain
-                  <span className='inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 ml-2 to-cyan-400 font-light mt-4'>
+                  <span className='inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 ml-2 to-cyan-400 font-light mt-2 sm:mt-4'>
                     Innovation
                   </span>
                 </h2>
@@ -774,8 +987,8 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className='grid lg:grid-cols-3 gap-8 mb-20'>
-                <div className='relative h-72'>
+              <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20'>
+                <div className='relative h-72 w-full'>
                   <Image
                     src='https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
                     alt='Blockchain network visualization with glowing nodes'
@@ -791,7 +1004,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className='relative'>
+                <div className='relative h-72 w-full'>
                   <Image
                     src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
                     alt='Digital trading interface with cryptocurrency charts'
@@ -807,7 +1020,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className='relative'>
+                <div className='relative h-72 w-full'>
                   <Image
                     src='https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
                     alt='Secure digital vault with encryption symbols'
@@ -832,42 +1045,42 @@ export default function HomePage() {
                   </h3>
                   <div className='space-y-6'>
                     <div className='flex items-start space-x-4'>
-                      <div className='w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1'>
-                        <CheckCircle className='h-4 w-4 text-white' />
+                      <div className='w-7 h-7 bg-blue-700 rounded-full flex items-center justify-center flex-shrink-0 mt-1'>
+                        <CheckCircle className='h-5 w-5 text-white' />
                       </div>
                       <div className='space-y-2'>
                         <h4 className='text-lg font-light text-white'>
                           ERC-20 Compatible
                         </h4>
-                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                        <p className='text-zinc-400 font-light leading-relaxed'>
                           Full compatibility with existing DeFi protocols and
                           wallet infrastructure
                         </p>
                       </div>
                     </div>
                     <div className='flex items-start space-x-4'>
-                      <div className='w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1'>
-                        <CheckCircle className='h-4 w-4 text-white' />
+                      <div className='w-7 h-7 bg-blue-700 rounded-full flex items-center justify-center flex-shrink-0 mt-1'>
+                        <CheckCircle className='h-5 w-5 text-white' />
                       </div>
                       <div className='space-y-2'>
                         <h4 className='text-lg font-light text-white'>
                           Low Transaction Fees
                         </h4>
-                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                        <p className='text-zinc-400 font-light leading-relaxed'>
                           BSC network ensures minimal costs for trading and
                           transfers
                         </p>
                       </div>
                     </div>
                     <div className='flex items-start space-x-4'>
-                      <div className='w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1'>
-                        <CheckCircle className='h-4 w-4 text-white' />
+                      <div className='w-7 h-7 bg-blue-700 rounded-full flex items-center justify-center flex-shrink-0 mt-1'>
+                        <CheckCircle className='h-5 w-5 text-white' />
                       </div>
                       <div className='space-y-2'>
                         <h4 className='text-lg font-light text-white'>
                           Instant Settlements
                         </h4>
-                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                        <p className='text-zinc-400 font-light leading-relaxed'>
                           Fast block times enable immediate transaction
                           confirmation
                         </p>
@@ -889,7 +1102,7 @@ export default function HomePage() {
                         <h4 className='text-lg font-light text-white'>
                           Multi-Signature Wallets
                         </h4>
-                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                        <p className='text-zinc-400 font-light leading-relaxed'>
                           Enhanced security through multiple authorization
                           requirements
                         </p>
@@ -903,7 +1116,7 @@ export default function HomePage() {
                         <h4 className='text-lg font-light text-white'>
                           Audited Smart Contracts
                         </h4>
-                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                        <p className='text-zinc-400 font-light leading-relaxed'>
                           Third-party security audits ensure code integrity and
                           safety
                         </p>
@@ -917,7 +1130,7 @@ export default function HomePage() {
                         <h4 className='text-lg font-light text-white'>
                           Regulatory Compliance
                         </h4>
-                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                        <p className='text-zinc-400 font-light leading-relaxed'>
                           Full compliance with international securities
                           regulations
                         </p>
@@ -964,7 +1177,7 @@ export default function HomePage() {
                     <h3 className='text-4xl font-light text-white tracking-wide'>
                       Investment Benefits
                     </h3>
-                    <div className='w-24 h-px bg-gradient-to-r from-amber-400 to-transparent'></div>
+                    <div className='w-1/2 h-px bg-gradient-to-r from-amber-400 to-transparent'></div>
                   </div>
 
                   <div className='space-y-8'>
@@ -1042,40 +1255,621 @@ export default function HomePage() {
 
               {/* Investment Metrics */}
               <div className='grid grid-cols-2 md:grid-cols-4 gap-8'>
-                <Card className='bg-black/30 border-zinc-800/30 text-center p-6'>
+                <Card className='bg-neutral-900/80 border-zinc-800/80 text-center p-4'>
                   <CardContent className='space-y-3'>
                     <div className='text-3xl font-light text-amber-400'>
                       $34
                     </div>
-                    <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
+                    <div className='text-zinc-200 font-light uppercase tracking-wide'>
                       Current Price
                     </div>
                   </CardContent>
                 </Card>
-                <Card className='bg-black/30 border-zinc-800/30 text-center p-6'>
+                <Card className='bg-neutral-900/80 border-zinc-800/80 text-center p-4'>
                   <CardContent className='space-y-3'>
                     <div className='text-3xl font-light text-emerald-400'>
                       100K
                     </div>
-                    <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
+                    <div className='text-zinc-200 font-light uppercase tracking-wide'>
                       Total Supply
                     </div>
                   </CardContent>
                 </Card>
-                <Card className='bg-black/30 border-zinc-800/30 text-center p-6'>
+                <Card className='bg-neutral-900/80 border-zinc-800/80 text-center p-4'>
                   <CardContent className='space-y-3'>
                     <div className='text-3xl font-light text-blue-400'>BSC</div>
-                    <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
+                    <div className='text-zinc-200 font-light uppercase tracking-wide'>
                       Network
                     </div>
                   </CardContent>
                 </Card>
-                <Card className='bg-black/30 border-zinc-800/30 text-center p-6'>
+                <Card className='bg-neutral-900/80 border-zinc-800/80 text-center p-4'>
                   <CardContent className='space-y-3'>
                     <div className='text-3xl font-light text-white'>24/7</div>
-                    <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
+                    <div className='text-zinc-200 font-light uppercase tracking-wide'>
                       Trading
                     </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* Brickken Infrastructure */}
+          <section id='infrastructure' className='w-full py-40 relative'>
+            <div className='absolute inset-0'>
+              <Image
+                src='https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80'
+                alt='Advanced blockchain infrastructure and technology'
+                fill
+                className='object-cover'
+              />
+              <div className='absolute inset-0 bg-black/85'></div>
+            </div>
+            <div className='container px-8 md:px-12 max-w-8xl mx-auto relative'>
+              <div className='text-center mb-20'>
+                <Badge className='bg-purple-500/20 text-purple-400 border-purple-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
+                  Trusted Infrastructure
+                </Badge>
+                <h2 className='text-4xl md:text-6xl font-light text-white tracking-tight leading-tight mb-8'>
+                  Powered by
+                  <span className='block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-light mt-4'>
+                    Brickken
+                  </span>
+                </h2>
+                <p className='text-xl text-zinc-300 font-extralight leading-relaxed max-w-4xl mx-auto tracking-wide'>
+                  Europe's leading platform for real-world asset tokenization,
+                  providing the technological robustness, regulatory compliance,
+                  and global reach that powers HYDROKKEN's security token
+                  infrastructure.
+                </p>
+              </div>
+
+              <div className='grid lg:grid-cols-2 gap-20 items-center mb-20'>
+                <div className='space-y-12'>
+                  <div className='space-y-8'>
+                    <h3 className='text-4xl font-light text-white tracking-wide'>
+                      Why Brickken
+                    </h3>
+                    <div className='w-24 h-px bg-gradient-to-r from-purple-400 to-transparent'></div>
+                    <p className='text-lg text-zinc-300 font-extralight leading-relaxed tracking-wide'>
+                      Based in Barcelona, Brickken transforms traditional equity
+                      into legally compliant, blockchain-powered
+                      assets—accessible and verifiable worldwide with over $300
+                      million in tokenized assets across 16 countries.
+                    </p>
+                  </div>
+
+                  <div className='space-y-8'>
+                    <div className='flex items-start space-x-6'>
+                      <div className='w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <Coins className='h-6 w-6 text-purple-400' />
+                      </div>
+                      <div className='space-y-3'>
+                        <h4 className='text-xl font-light text-white'>
+                          One Token = One Share
+                        </h4>
+                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                          Each HYDROKKEN token represents a full share in
+                          Hydroma Inc., ensuring clear legal ownership and full
+                          shareholder rights.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className='flex items-start space-x-6'>
+                      <div className='w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <FileCheck className='h-6 w-6 text-purple-400' />
+                      </div>
+                      <div className='space-y-3'>
+                        <h4 className='text-xl font-light text-white'>
+                          Advanced KYC/AML
+                        </h4>
+                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                          Streamlined investor registration with automated
+                          compliance checks, ensuring full regulatory adherence
+                          while minimizing friction.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className='flex items-start space-x-6'>
+                      <div className='w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <Wallet className='h-6 w-6 text-purple-400' />
+                      </div>
+                      <div className='space-y-3'>
+                        <h4 className='text-xl font-light text-white'>
+                          Crypto & Fiat Integration
+                        </h4>
+                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                          Flexible payment options supporting both
+                          cryptocurrency and fiat purchases, maintaining
+                          transparency and auditability.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='relative'>
+                  <Image
+                    src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                    alt='Brickken platform interface showing tokenization dashboard'
+                    width={600}
+                    height={400}
+                    className='rounded-3xl'
+                  />
+                  <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-3xl'></div>
+                  <div className='absolute bottom-8 left-8 right-8'>
+                    <div className='bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-zinc-700/50'>
+                      <h4 className='text-white font-medium mb-4'>
+                        Brickken Advantages
+                      </h4>
+                      <div className='grid grid-cols-2 gap-4 text-sm'>
+                        <div className='flex items-center space-x-2'>
+                          <CheckCircle className='h-4 w-4 text-purple-400 flex-shrink-0' />
+                          <span className='text-zinc-300'>BSC Network</span>
+                        </div>
+                        <div className='flex items-center space-x-2'>
+                          <CheckCircle className='h-4 w-4 text-purple-400 flex-shrink-0' />
+                          <span className='text-zinc-300'>EU Regulated</span>
+                        </div>
+                        <div className='flex items-center space-x-2'>
+                          <CheckCircle className='h-4 w-4 text-purple-400 flex-shrink-0' />
+                          <span className='text-zinc-300'>
+                            $300M+ Tokenized
+                          </span>
+                        </div>
+                        <div className='flex items-center space-x-2'>
+                          <CheckCircle className='h-4 w-4 text-purple-400 flex-shrink-0' />
+                          <span className='text-zinc-300'>16 Countries</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Infrastructure Features */}
+              <div className='grid md:grid-cols-3 gap-8'>
+                <Card className='bg-black/30 border-zinc-800/30 p-8'>
+                  <CardContent className='space-y-6'>
+                    <Shield className='h-12 w-12 text-purple-400' />
+                    <h4 className='text-xl font-light text-white'>
+                      Legal Framework
+                    </h4>
+                    <p className='text-zinc-400 font-extralight leading-relaxed'>
+                      Complete legal documentation including European legal
+                      opinion, token sale agreements, and institutional-grade
+                      investor protections.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className='bg-black/30 border-zinc-800/30 p-8'>
+                  <CardContent className='space-y-6'>
+                    <Zap className='h-12 w-12 text-emerald-400' />
+                    <h4 className='text-xl font-light text-white'>
+                      Scalable Technology
+                    </h4>
+                    <p className='text-zinc-400 font-extralight leading-relaxed'>
+                      Built on Binance Smart Chain for fast, low-cost
+                      transactions with full compatibility across major wallets
+                      and DeFi protocols.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className='bg-black/30 border-zinc-800/30 p-8'>
+                  <CardContent className='space-y-6'>
+                    <Award className='h-12 w-12 text-amber-400' />
+                    <h4 className='text-xl font-light text-white'>
+                      Proven Track Record
+                    </h4>
+                    <p className='text-zinc-400 font-extralight leading-relaxed'>
+                      Market-tested protocols across multiple industries, with
+                      HYDROKKEN featured as a flagship case study demonstrating
+                      live execution.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          <section className='w-full py-40 relative'>
+            <div className='absolute inset-0'>
+              <Image
+                src='https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80'
+                alt='Professional portrait setting representing leadership and innovation'
+                fill
+                className='object-cover opacity-5'
+              />
+              <div className='absolute inset-0 bg-black/95'></div>
+            </div>
+            <div className='container px-8 md:px-12 max-w-8xl mx-auto relative'>
+              <div className='text-center mb-20'>
+                <Badge className='bg-amber-500/20 text-amber-400 border-amber-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
+                  Visionary Leadership
+                </Badge>
+                <h2 className='text-4xl md:text-6xl font-light text-white tracking-tight leading-tight mb-8'>
+                  Meet the
+                  <span className='block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-400 font-light mt-4'>
+                    Founder
+                  </span>
+                </h2>
+                <p className='text-xl text-zinc-300 font-extralight leading-relaxed max-w-4xl mx-auto tracking-wide'>
+                  El Mostafa Belkhayate - World Champion in AI Applied to
+                  Trading, Social Impact Pioneer, and the visionary mind behind
+                  HYDROKKEN's mission to democratize clean energy investment.
+                </p>
+              </div>
+
+              <div className='grid lg:grid-cols-2 gap-20 items-center mb-20'>
+                <div className='relative'>
+                  <div className='aspect-[4/5] relative rounded-3xl overflow-hidden'>
+                    <Image
+                      src='https://bknmaster-master-dapppublicbucket.s3.amazonaws.com/6e259fee-5f59-4c6c-b547-19e634882b4a/publish/assets/teamImage0.png'
+                      alt='El Mostafa Belkhayate - Founder of HYDROKKEN and Springbox AI'
+                      fill
+                      className='object-cover'
+                    />
+                    <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent'></div>
+                    <div className='absolute bottom-8 left-8 right-8'>
+                      <div className='bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-zinc-700/50'>
+                        <h3 className='text-white font-medium text-xl mb-2'>
+                          El Mostafa Belkhayate
+                        </h3>
+                        <div className='space-y-2 text-sm'>
+                          <div className='text-amber-400'>
+                            World Champion in AI Applied to Trading
+                          </div>
+                          <div className='text-emerald-400'>
+                            Co-founder, Springbox AI
+                          </div>
+                          <div className='text-zinc-300'>
+                            Social Impact Pioneer
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='space-y-12'>
+                  <div className='space-y-8'>
+                    <h3 className='text-4xl font-light text-white tracking-wide'>
+                      Technology Serving Humanity
+                    </h3>
+                    <div className='w-24 h-px bg-gradient-to-r from-amber-400 to-transparent'></div>
+                    <p className='text-lg text-zinc-300 font-extralight leading-relaxed tracking-wide'>
+                      "Technology must serve people — not the other way around."
+                      This philosophy has guided El Mostafa's 20+ year journey
+                      of building AI systems that democratize financial
+                      education and empower underserved communities worldwide.
+                    </p>
+                  </div>
+
+                  <div className='space-y-8'>
+                    <div className='flex items-start space-x-6'>
+                      <div className='w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <Award className='h-6 w-6 text-amber-400' />
+                      </div>
+                      <div className='space-y-3'>
+                        <h4 className='text-xl font-light text-white'>
+                          Global Recognition
+                        </h4>
+                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                          World Champion in AI Applied to Trading (AIM Congress
+                          2025), generating $15,000 in 6 minutes with Springbox
+                          AI. Featured in documentaries and recognized as a
+                          Financial Education Pioneer.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className='flex items-start space-x-6'>
+                      <div className='w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <Users className='h-6 w-6 text-amber-400' />
+                      </div>
+                      <div className='space-y-3'>
+                        <h4 className='text-xl font-light text-white'>
+                          Social Impact Legacy
+                        </h4>
+                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                          Over 50,000 individuals trained through free global
+                          trading academies, with 12,000+ Wall Street
+                          certifications completed. Established digital learning
+                          centers in Moroccan orphanages, impacting 2,000+
+                          children.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className='flex items-start space-x-6'>
+                      <div className='w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <Globe className='h-6 w-6 text-amber-400' />
+                      </div>
+                      <div className='space-y-3'>
+                        <h4 className='text-xl font-light text-white'>
+                          African Empowerment Mission
+                        </h4>
+                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                          20+ years across Francophone and Anglophone Africa,
+                          conducting AI trading workshops in 20+ countries.
+                          Enabling youth to serve global markets while remaining
+                          in their communities, creating local wealth and
+                          stability.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Impact Statistics */}
+              <div className='grid grid-cols-2 md:grid-cols-4 gap-8 mb-20'>
+                <div className='text-center space-y-4'>
+                  <div className='text-4xl font-light text-amber-400'>50K+</div>
+                  <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
+                    People Trained
+                  </div>
+                </div>
+                <div className='text-center space-y-4'>
+                  <div className='text-4xl font-light text-amber-400'>20+</div>
+                  <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
+                    Countries Impacted
+                  </div>
+                </div>
+                <div className='text-center space-y-4'>
+                  <div className='text-4xl font-light text-amber-400'>2K+</div>
+                  <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
+                    Orphans Educated
+                  </div>
+                </div>
+                <div className='text-center space-y-4'>
+                  <div className='text-4xl font-light text-amber-400'>400%</div>
+                  <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
+                    Average Income Increase
+                  </div>
+                </div>
+              </div>
+
+              {/* Women's Empowerment Focus */}
+              <div className='bg-black/30 backdrop-blur-sm rounded-3xl border border-zinc-800/30 p-12'>
+                <div className='text-center mb-12'>
+                  <h3 className='text-3xl font-light text-white mb-6'>
+                    Champion of Women's Economic Leadership
+                  </h3>
+                  <p className='text-lg text-zinc-300 font-extralight leading-relaxed max-w-3xl mx-auto'>
+                    "The future of finance will be feminine. Women bring
+                    emotional intelligence, long-term perspective, and ethical
+                    considerations essential for sustainable economic systems."
+                  </p>
+                </div>
+
+                <div className='grid md:grid-cols-3 gap-8'>
+                  <div className='text-center space-y-4'>
+                    <div className='w-16 h-16 bg-pink-500/20 rounded-xl flex items-center justify-center mx-auto'>
+                      <TrendingUp className='h-8 w-8 text-pink-400' />
+                    </div>
+                    <h4 className='text-white font-medium'>
+                      Superior Performance
+                    </h4>
+                    <p className='text-zinc-400 text-sm font-extralight'>
+                      Women consistently outperform men in trading education
+                      programs, showing superior risk management and disciplined
+                      thinking.
+                    </p>
+                  </div>
+                  <div className='text-center space-y-4'>
+                    <div className='w-16 h-16 bg-pink-500/20 rounded-xl flex items-center justify-center mx-auto'>
+                      <Users className='h-8 w-8 text-pink-400' />
+                    </div>
+                    <h4 className='text-white font-medium'>Community Focus</h4>
+                    <p className='text-zinc-400 text-sm font-extralight'>
+                      50% scholarship allocation reserved for women, with female
+                      mentorship networks and childcare-friendly scheduling.
+                    </p>
+                  </div>
+                  <div className='text-center space-y-4'>
+                    <div className='w-16 h-16 bg-pink-500/20 rounded-xl flex items-center justify-center mx-auto'>
+                      <Shield className='h-8 w-8 text-pink-400' />
+                    </div>
+                    <h4 className='text-white font-medium'>
+                      Financial Independence
+                    </h4>
+                    <p className='text-zinc-400 text-sm font-extralight'>
+                      Focus on empowering women with financial independence
+                      rather than dependency on traditional employment
+                      structures.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* The Hydrogen Harvest Book Section */}
+          <section className='w-full py-40 bg-zinc-950/30'>
+            <div className='container px-8 md:px-12 max-w-8xl mx-auto'>
+              <div className='text-center mb-20'>
+                <Badge className='bg-green-500/10 text-green-400 border-green-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
+                  Essential Reading
+                </Badge>
+                <h2 className='text-4xl md:text-6xl font-light text-white tracking-tight leading-tight mb-8'>
+                  The Hydrogen
+                  <span className='inline-block ml-2 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 font-light mt-4'>
+                    Harvest
+                  </span>
+                </h2>
+                <p className='text-xl text-zinc-300 font-extralight leading-relaxed max-w-4xl mx-auto tracking-wide'>
+                  Earth's Hidden Clean and Renewable Energy - How Natural
+                  Hydrogen Could End the Climate Crisis and Transform
+                  Civilization
+                </p>
+              </div>
+
+              <div className='grid lg:grid-cols-2 gap-20 items-center'>
+                <div className='relative'>
+                  <div className='aspect-[3/4] relative rounded-3xl overflow-hidden bg-gradient-to-br from-green-900/20 to-emerald-900/20 border border-green-500/20'>
+                    <Image
+                      // src='/placeholder.svg?height=600&width=450'
+                      src='https://images.unsplash.com/photo-1557313773-74c3490a350d?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                      alt='The Hydrogen Harvest book cover'
+                      fill
+                      className='object-cover'
+                    />
+                    <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent'></div>
+                    <div className='absolute bottom-8 left-8 right-8'>
+                      <div className='bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-green-500/30'>
+                        <h3 className='text-white font-medium text-xl mb-2'>
+                          The Hydrogen Harvest
+                        </h3>
+                        <p className='text-green-400 text-sm mb-3'>
+                          Earth's Hidden Clean and Renewable Energy
+                        </p>
+                        <p className='text-zinc-300 text-sm'>
+                          The definitive guide to natural hydrogen and its
+                          potential to revolutionize global energy systems.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='space-y-12'>
+                  <div className='space-y-8'>
+                    <h3 className='text-4xl font-light text-white tracking-wide'>
+                      The Science Behind HYDROKKEN
+                    </h3>
+                    <div className='w-1/2 h-px bg-gradient-to-r from-green-400 to-transparent'></div>
+                    <p className='text-lg text-zinc-300 font-extralight leading-relaxed tracking-wide'>
+                      This comprehensive book explores the revolutionary
+                      potential of natural hydrogen - the clean, renewable
+                      energy source that forms the foundation of the HYDROKKEN
+                      investment opportunity.
+                    </p>
+                  </div>
+
+                  <div className='space-y-8'>
+                    <div className='flex items-start space-x-6'>
+                      <div className='w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <Atom className='h-6 w-6 text-green-400' />
+                      </div>
+                      <div className='space-y-3'>
+                        <h4 className='text-xl font-light text-white'>
+                          Natural Hydrogen Fundamentals
+                        </h4>
+                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                          Deep dive into the geological processes that create
+                          natural hydrogen, its abundance worldwide, and why it
+                          represents the ultimate clean energy solution.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className='flex items-start space-x-6'>
+                      <div className='w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <Globe className='h-6 w-6 text-green-400' />
+                      </div>
+                      <div className='space-y-3'>
+                        <h4 className='text-xl font-light text-white'>
+                          Climate Crisis Solution
+                        </h4>
+                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                          Detailed analysis of how natural hydrogen could end
+                          the climate crisis by providing unlimited clean energy
+                          without the environmental costs of traditional
+                          renewables.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className='flex items-start space-x-6'>
+                      <div className='w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <TrendingUp className='h-6 w-6 text-green-400' />
+                      </div>
+                      <div className='space-y-3'>
+                        <h4 className='text-xl font-light text-white'>
+                          Investment Opportunity
+                        </h4>
+                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                          Economic analysis of the natural hydrogen market,
+                          investment potential, and how early investors can
+                          participate in this transformational energy
+                          revolution.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className='space-y-6'>
+                    <Button
+                      size='lg'
+                      className='bg-green-500 hover:bg-green-600 text-black font-medium px-12 py-4 text-lg tracking-[0.1em] uppercase transition-all duration-300 shadow-xl shadow-green-500/20'
+                      asChild
+                    >
+                      <a
+                        href='/files/THE-HYDROGEN-HARVEST.pdf'
+                        target='_blank'
+                        rel='noreferrer'
+                        // download
+                      >
+                        Download Free PDF
+                        <ExternalLink className='ml-3 h-5 w-5' />
+                      </a>
+                    </Button>
+                    <p className='text-zinc-400 text-sm font-extralight'>
+                      Essential reading for understanding the science and
+                      investment potential behind HYDROKKEN
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Book Highlights */}
+              <div className='mt-20 grid md:grid-cols-3 gap-8'>
+                <Card className='bg-black/30 border-zinc-800/30 p-8'>
+                  <CardContent className='space-y-6'>
+                    <div className='w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center'>
+                      <CheckCircle className='h-6 w-6 text-green-400' />
+                    </div>
+                    <h4 className='text-xl font-light text-white'>
+                      Scientific Foundation
+                    </h4>
+                    <p className='text-zinc-400 font-extralight leading-relaxed'>
+                      Comprehensive research on natural hydrogen geology,
+                      extraction methods, and environmental impact assessments.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className='bg-black/30 border-zinc-800/30 p-8'>
+                  <CardContent className='space-y-6'>
+                    <div className='w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center'>
+                      <BarChart3 className='h-6 w-6 text-green-400' />
+                    </div>
+                    <h4 className='text-xl font-light text-white'>
+                      Market Analysis
+                    </h4>
+                    <p className='text-zinc-400 font-extralight leading-relaxed'>
+                      Economic projections, market size estimates, and
+                      competitive analysis of natural hydrogen versus other
+                      energy sources.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className='bg-black/30 border-zinc-800/30 p-8'>
+                  <CardContent className='space-y-6'>
+                    <div className='w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center'>
+                      <Zap className='h-6 w-6 text-green-400' />
+                    </div>
+                    <h4 className='text-xl font-light text-white'>
+                      Future Vision
+                    </h4>
+                    <p className='text-zinc-400 font-extralight leading-relaxed'>
+                      Roadmap for global energy transformation and how natural
+                      hydrogen could reshape civilization's relationship with
+                      energy.
+                    </p>
                   </CardContent>
                 </Card>
               </div>
@@ -1111,7 +1905,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className='grid grid-cols-2 gap-y-16 justify-items-center'>
+              <div className='grid grid-cols-1 sm:grid-cols-2 gap-y-16 justify-items-center'>
                 {/* Q1 2024 */}
                 <div className='flex items-start space-x-8'>
                   <div className='flex-shrink-0'>
@@ -1248,7 +2042,7 @@ export default function HomePage() {
                   </p>
                 </div>
 
-                <div className='bg-zinc-950/90 rounded-3xl border border-zinc-800/30 p-16 max-w-4xl mx-auto'>
+                <div className='bg-zinc-950/90 rounded-3xl border border-zinc-800/30 p-10 sm:p-16 max-w-4xl mx-auto'>
                   <div className='space-y-12'>
                     <div className='text-center space-y-6'>
                       <h3 className='text-4xl text-white tracking-wide'>
@@ -1262,41 +2056,38 @@ export default function HomePage() {
                       </p>
                     </div>
 
-                    <div className='grid grid-cols-3 gap-8'>
+                    <div className='grid grid-cols-1 sm:grid-cols-3 gap-8'>
                       <div className='text-center p-8 bg-black/30 rounded-2xl border border-zinc-800/30'>
-                        <div className='text-3xl font-extralight text-emerald-400 mb-3'>
+                        <div className='text-3xl text-emerald-400 mb-3'>
                           $34
                         </div>
-                        <div className='text-zinc-500 text-sm font-light tracking-[0.2em] uppercase'>
+                        <div className='text-zinc-200 text-sm tracking-[0.2em] uppercase'>
                           Current Price
                         </div>
                       </div>
                       <div className='text-center p-8 bg-black/30 rounded-2xl border border-zinc-800/30'>
-                        <div className='text-3xl font-extralight text-white mb-3'>
-                          100K
-                        </div>
-                        <div className='text-zinc-500 text-sm font-light tracking-[0.2em] uppercase'>
+                        <div className='text-3xl text-white mb-3'>100K</div>
+                        <div className='text-zinc-200 text-sm tracking-[0.2em] uppercase'>
                           Total Supply
                         </div>
                       </div>
                       <div className='text-center p-8 bg-black/30 rounded-2xl border border-zinc-800/30'>
-                        <div className='text-3xl font-extralight text-amber-400 mb-3'>
-                          BSC
-                        </div>
-                        <div className='text-zinc-500 text-sm font-light tracking-[0.2em] uppercase'>
+                        <div className='text-3xl text-amber-400 mb-3'>BSC</div>
+                        <div className='text-zinc-200 text-sm tracking-[0.2em] uppercase'>
                           Network
                         </div>
                       </div>
                     </div>
 
                     <div className='flex flex-col sm:flex-row gap-6'>
-                      <Button className='flex-1 bg-emerald-500 hover:bg-emerald-600 text-black font-medium py-6 text-xl tracking-[0.1em] uppercase transition-all duration-500'>
-                        Buy HDKN Now
-                        <ArrowRight className='ml-4 h-6 w-6' />
-                      </Button>
-                      <Button className='flex-1 bg-zinc-700 hover:bg-zinc-600 text-white font-medium py-6 text-xl tracking-[0.1em] uppercase transition-all duration-500'>
-                        <Wallet className='mr-4 h-6 w-6' />
-                        Connect Wallet
+                      <Button
+                        className='flex-1 bg-emerald-500 hover:bg-emerald-600 text-black font-medium py-6 text-xl tracking-[0.1em] uppercase transition-all duration-500'
+                        asChild
+                      >
+                        <a href={ctaLink} target='_blank' rel='noreferrer'>
+                          Buy HDKN Now
+                          <ArrowRight className='ml-4 h-6 w-6' />
+                        </a>
                       </Button>
                     </div>
 
@@ -1329,7 +2120,7 @@ export default function HomePage() {
                     Hydrokken
                   </span>
                 </div>
-                <p className='text-zinc-400 font-extralight leading-relaxed tracking-wide'>
+                <p className='text-zinc-400 font-light leading-relaxed tracking-wide'>
                   The world's first security token backed by natural hydrogen
                   equity, merging sustainable energy production with
                   cutting-edge blockchain technology for the future of clean
@@ -1458,17 +2249,17 @@ export default function HomePage() {
               </div>
             </div>
             <div className='border-t border-zinc-800/30 mt-20 pt-12 flex flex-col md:flex-row justify-between items-center'>
-              <p className='text-zinc-500 font-extralight tracking-wide'>
-                © 2025 HYDROKKEN. All rights reserved. Powered by 0xFactory.
+              <p className='text-zinc-500 tracking-wide'>
+                © 2025 HYDROKKEN. All rights reserved.
               </p>
-              <div className='flex space-x-12 mt-8 md:mt-0'>
-                <span className='text-zinc-500 text-sm font-extralight tracking-[0.1em] uppercase'>
+              <div className='flex flex-row flex-wrap gap-4 sm:space-x-12 mt-8 md:mt-0 w-full sm:w-auto'>
+                <span className='text-zinc-500 text-sm tracking-[0.1em] uppercase'>
                   BSC Network
                 </span>
-                <span className='text-emerald-400 text-sm font-light tracking-[0.1em] uppercase'>
+                <span className='text-emerald-400 text-sm tracking-[0.1em] uppercase'>
                   Security Token
                 </span>
-                <span className='text-zinc-500 text-sm font-extralight tracking-[0.1em] uppercase'>
+                <span className='text-zinc-500 text-sm tracking-[0.1em] uppercase'>
                   Regulated
                 </span>
               </div>

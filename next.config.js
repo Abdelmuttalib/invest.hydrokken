@@ -8,7 +8,11 @@ const nextConfig = {
   swcMinify: true,
 
   images: {
-    domains: ['images.unsplash.com'],
+    domains: [
+      'images.unsplash.com',
+      'kajabi-storefronts-production.kajabi-cdn.com',
+      'bknmaster-master-dapppublicbucket.s3.amazonaws.com',
+    ],
   },
 
   transpilePackages: ['geist'],

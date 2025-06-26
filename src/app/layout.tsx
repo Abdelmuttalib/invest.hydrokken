@@ -5,6 +5,8 @@ import * as React from 'react';
 
 import '@/styles/globals.css';
 
+import { TailwindIndicator } from '@/components/dev-tools/tailwind-indicator';
+
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import { siteConfig } from '@/constant/config';
 
@@ -59,7 +61,11 @@ export default function RootLayout({
       lang='en'
       className={`${GeistSans.variable} ${GeistMono.variable} font-sans`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+
+        <TailwindIndicator />
+      </body>
     </html>
   );
 }
