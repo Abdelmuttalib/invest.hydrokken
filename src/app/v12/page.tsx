@@ -22,6 +22,8 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { ctaLink } from '@/lib/cta';
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -68,12 +70,12 @@ export default function Component() {
         <div className='ml-12'>
           <Button
             className='bg-emerald-500 hover:bg-emerald-600 text-black font-medium px-8 py-3 tracking-[0.1em] uppercase text-sm transition-all duration-300 shadow-lg shadow-emerald-500/20'
-            onClick={() =>
-              window.open('https://platform.hydrokken.com', '_blank')
-            }
+            asChild
           >
-            Launch Platform
-            <ExternalLink className='ml-2 h-4 w-4' />
+            <a href={ctaLink} target='_blank' rel='noreferrer'>
+              Launch Platform
+              <ExternalLink className='ml-2 h-4 w-4' />
+            </a>
           </Button>
         </div>
       </header>
@@ -183,15 +185,12 @@ export default function Component() {
                   <Button
                     size='lg'
                     className='bg-emerald-500 hover:bg-emerald-600 text-black font-medium px-12 py-4 text-lg tracking-[0.1em] uppercase transition-all duration-300 shadow-xl shadow-emerald-500/20'
-                    onClick={() =>
-                      window.open(
-                        'https://platform.hydrokken.com/buy',
-                        '_blank'
-                      )
-                    }
+                    asChild
                   >
-                    Buy HDKN Tokens
-                    <ExternalLink className='ml-3 h-5 w-5' />
+                    <a href={ctaLink} target='_blank' rel='noreferrer'>
+                      Buy HDKN Tokens
+                      <ExternalLink className='ml-3 h-5 w-5' />
+                    </a>
                   </Button>
                   <Button
                     size='lg'
@@ -1086,27 +1085,21 @@ export default function Component() {
                   <div className='flex flex-col sm:flex-row gap-6'>
                     <Button
                       className='flex-1 bg-emerald-500 hover:bg-emerald-600 text-black font-medium py-6 text-xl tracking-[0.1em] uppercase transition-all duration-500'
-                      onClick={() =>
-                        window.open(
-                          'https://platform.hydrokken.com/buy',
-                          '_blank'
-                        )
-                      }
+                      asChild
                     >
-                      Buy HDKN Tokens
-                      <ExternalLink className='ml-4 h-6 w-6' />
+                      <a href={ctaLink} target='_blank' rel='noreferrer'>
+                        Buy HDKN Tokens
+                        <ExternalLink className='ml-4 h-6 w-6' />
+                      </a>
                     </Button>
                     <Button
                       className='flex-1 bg-zinc-700 hover:bg-zinc-600 text-white font-medium py-6 text-xl tracking-[0.1em] uppercase transition-all duration-500'
-                      onClick={() =>
-                        window.open(
-                          'https://platform.hydrokken.com/register',
-                          '_blank'
-                        )
-                      }
+                      asChild
                     >
-                      Create Account
-                      <ExternalLink className='ml-4 h-6 w-6' />
+                      <a href={ctaLink} target='_blank' rel='noreferrer'>
+                        Create Account
+                        <ExternalLink className='ml-4 h-6 w-6' />
+                      </a>
                     </Button>
                   </div>
 
@@ -1153,32 +1146,24 @@ export default function Component() {
               </h4>
               <ul className='space-y-4'>
                 <li>
-                  <Link
-                    href='#'
+                  <a
+                    href={ctaLink}
+                    target='_blank'
+                    rel='noreferrer'
                     className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
-                    onClick={() =>
-                      window.open(
-                        'https://platform.hydrokken.com/buy',
-                        '_blank'
-                      )
-                    }
                   >
                     Buy HDKN Tokens
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link
-                    href='#'
+                  <a
+                    href={ctaLink}
+                    target='_blank'
+                    rel='noreferrer'
                     className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
-                    onClick={() =>
-                      window.open(
-                        'https://platform.hydrokken.com/register',
-                        '_blank'
-                      )
-                    }
                   >
                     Create Account
-                  </Link>
+                  </a>
                 </li>
                 <li>
                   <Link
