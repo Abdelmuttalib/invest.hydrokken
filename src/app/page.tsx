@@ -6,12 +6,9 @@ import {
   Battery,
   Building2,
   CheckCircle,
-  Clock,
   Coins,
-  ExternalLink,
   FileCheck,
   Globe,
-  Leaf,
   Lock,
   Network,
   Shield,
@@ -31,7 +28,6 @@ import { ctaLink } from '@/lib/cta';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { TokensInputs } from '@/components/views/home';
 
 /**
  * SVGR Support
@@ -105,7 +101,7 @@ export default function HomePage() {
 
         <main className='flex-1'>
           {/* Hero Section */}
-          <section className='w-full min-h-screen relative overflow-hidden flex items-center'>
+          <section className='w-full min-h-screen relative overflow-hidden flex items-center py-16'>
             <div className='absolute inset-0'>
               <Image
                 src='https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
@@ -126,14 +122,14 @@ export default function HomePage() {
                 {/* Left Content */}
                 <div className='space-y-16'>
                   <div className='space-y-12'>
-                    <div className='inline-flex items-center space-x-3 bg-zinc-900/30 backdrop-blur-sm rounded-full px-4 text-sm md:text-base md:px-8 md:py-4 py-2 border border-emerald-500/20'>
+                    <div className='inline-flex items-center space-x-3 bg-zinc-900/30 backdrop-blur-sm rounded-full px-4 text-sm md:px-6 md:py-3 py-2 border border-emerald-500/20'>
                       <div className='w-2 h-2 bg-emerald-400 rounded-full animate-pulse'></div>
                       <span className='text-emerald-400 tracking-[0.15em] uppercase'>
                         World&apos;s First Natural Hydrogen Security Token
                       </span>
                     </div>
 
-                    <h1 className='text-6xl md:text-8xl font-semibold text-white leading-[0.9] tracking-tight'>
+                    <h1 className='text-6xl md:text-7xl font-semibold text-white leading-[0.9] tracking-tight'>
                       HDKN
                       <span className='inline-block ml-1 text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-emerald-400 to-teal-500 font-bold'>
                         TOKEN
@@ -217,7 +213,7 @@ export default function HomePage() {
                       asChild
                     >
                       <a href={ctaLink} target='_blank' rel='noreferrer'>
-                        Buy HDKN Now Buy HDKN Now
+                        Buy HDKN Now
                         <ArrowRight className='ml-3 h-5 w-5' />
                       </a>
                     </Button>
@@ -243,7 +239,7 @@ export default function HomePage() {
 
                     <div className='p-8 space-y-8'>
                       {/* Progress Section */}
-                      <div className='bg-black/30 rounded-2xl p-6 border border-zinc-800/50'>
+                      {/* <div className='bg-black/30 rounded-2xl p-6 border border-zinc-800/50'>
                         <div className='space-y-4'>
                           <div className='flex justify-between items-center'>
                             <span className='text-zinc-300 font-medium'>
@@ -268,7 +264,7 @@ export default function HomePage() {
                             </span>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
 
                       {/* Token Price */}
                       {/* <div className="text-center bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-2xl p-6 border border-emerald-500/20">
@@ -323,9 +319,9 @@ export default function HomePage() {
                           </div>
                         </div>
 
-                        <div className='grid grid-cols-2 gap-4'>
+                        {/* <div className='grid grid-cols-2 gap-4'>
                           <TokensInputs />
-                        </div>
+                        </div> */}
 
                         <div className='space-y-4'>
                           <Button className='w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-black font-bold py-7 text-lg tracking-wide uppercase transition-all duration-300 shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/40'>
@@ -968,7 +964,7 @@ export default function HomePage() {
           </section>
 
           {/* Blockchain Technology */}
-          <section id='technology' className='w-full py-40 bg-zinc-950/30'>
+          <section id='innovation' className='w-full py-40 bg-zinc-950/30'>
             <div className='container px-8 md:px-12 max-w-8xl mx-auto'>
               <div className='text-center mb-20'>
                 <Badge className='bg-blue-900/10 text-blue-400 border-blue-500/30 mb-4 sm:mb-2 px-6 py-3 tracking-[0.15em] uppercase'>
@@ -1144,7 +1140,10 @@ export default function HomePage() {
           </section>
 
           {/* Trading & Investment */}
-          <section className='w-full py-40 relative'>
+          <section
+            className='w-full py-40 relative'
+            id='trading-and-investment'
+          >
             <div className='absolute inset-0'>
               <Image
                 src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80'
@@ -1255,43 +1254,34 @@ export default function HomePage() {
               </div>
 
               {/* Investment Metrics */}
-              <div className='grid grid-cols-2 md:grid-cols-4 gap-8'>
-                <Card className='bg-neutral-900/80 border-zinc-800/80 text-center p-4'>
-                  <CardContent className='space-y-3'>
-                    <div className='text-3xl font-light text-amber-400'>
-                      $34
-                    </div>
-                    <div className='text-zinc-200 font-light uppercase tracking-wide'>
-                      Current Price
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className='bg-neutral-900/80 border-zinc-800/80 text-center p-4'>
-                  <CardContent className='space-y-3'>
-                    <div className='text-3xl font-light text-emerald-400'>
-                      100K
-                    </div>
-                    <div className='text-zinc-200 font-light uppercase tracking-wide'>
-                      Total Supply
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className='bg-neutral-900/80 border-zinc-800/80 text-center p-4'>
-                  <CardContent className='space-y-3'>
-                    <div className='text-3xl font-light text-blue-400'>BSC</div>
-                    <div className='text-zinc-200 font-light uppercase tracking-wide'>
-                      Network
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className='bg-neutral-900/80 border-zinc-800/80 text-center p-4'>
-                  <CardContent className='space-y-3'>
-                    <div className='text-3xl font-light text-white'>24/7</div>
-                    <div className='text-zinc-200 font-light uppercase tracking-wide'>
-                      Trading
-                    </div>
-                  </CardContent>
-                </Card>
+              <div className='max-lg:mt-16'>
+                <hr className='mt-6 border-t border-zinc-800' />
+                <dl className='mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2'>
+                  <div className='flex flex-col gap-y-2 border-b border-dotted border-zinc-800 pb-4 text-amber-400'>
+                    <dt className='text-base/6 text-zinc-200'>Current Price</dt>
+                    <dd className='order-first text-6xl font-medium tracking-tight'>
+                      $<span>34</span>
+                    </dd>
+                  </div>
+                  <div className='flex flex-col gap-y-2 border-b border-dotted border-zinc-800 pb-4 text-amber-400'>
+                    <dt className='text-base/6 text-zinc-200'>Total Supply</dt>
+                    <dd className='order-first text-6xl font-medium tracking-tight'>
+                      <span>50-100</span>K
+                    </dd>
+                  </div>
+                  <div className='flex flex-col gap-y-2 max-sm:border-b max-sm:border-dotted max-sm:border-zinc-800 max-sm:pb-4 text-amber-400'>
+                    <dt className='text-base/6 text-zinc-200'>Network</dt>
+                    <dd className='order-first text-6xl font-medium tracking-tight'>
+                      <span className='font-mono'>BSC</span>
+                    </dd>
+                  </div>
+                  <div className='flex flex-col gap-y-2 text-amber-400'>
+                    <dt className='text-base/6 text-zinc-200'>Trading</dt>
+                    <dd className='order-first text-7xl font-medium tracking-tight'>
+                      <span>24/7</span>
+                    </dd>
+                  </div>
+                </dl>
               </div>
             </div>
           </section>
@@ -1476,7 +1466,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className='w-full py-40 relative'>
+          <section className='w-full py-40 relative' id='the-founder'>
             <div className='absolute inset-0'>
               <Image
                 src='https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80'
@@ -1541,7 +1531,7 @@ export default function HomePage() {
                       Technology Serving Humanity
                     </h3>
                     <div className='w-1/2 h-px bg-gradient-to-r from-amber-400 to-transparent'></div>
-                    <p className='text-lg text-zinc-300 font-extralight leading-relaxed tracking-wide'>
+                    <p className='text-lg text-zinc-300 font-light leading-relaxed tracking-wide'>
                       "Technology must serve people — not the other way around."
                       This philosophy has guided El Mostafa's 20+ year journey
                       of building AI systems that democratize financial
@@ -1558,7 +1548,7 @@ export default function HomePage() {
                         <h4 className='text-xl font-light text-white'>
                           Global Recognition
                         </h4>
-                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                        <p className='text-zinc-400 font-light leading-relaxed'>
                           World Champion in AI Applied to Trading (AIM Congress
                           2025), generating $15,000 in 6 minutes with Springbox
                           AI. Featured in documentaries and recognized as a
@@ -1575,7 +1565,7 @@ export default function HomePage() {
                         <h4 className='text-xl font-light text-white'>
                           Social Impact Legacy
                         </h4>
-                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                        <p className='text-zinc-400 font-light leading-relaxed'>
                           Over 50,000 individuals trained through free global
                           trading academies, with 12,000+ Wall Street
                           certifications completed. Established digital learning
@@ -1593,7 +1583,7 @@ export default function HomePage() {
                         <h4 className='text-xl font-light text-white'>
                           African Empowerment Mission
                         </h4>
-                        <p className='text-zinc-400 font-extralight leading-relaxed'>
+                        <p className='text-zinc-400 font-light leading-relaxed'>
                           20+ years across Francophone and Anglophone Africa,
                           conducting AI trading workshops in 20+ countries.
                           Enabling youth to serve global markets while remaining
@@ -1607,31 +1597,42 @@ export default function HomePage() {
               </div>
 
               {/* Impact Statistics */}
-              <div className='grid grid-cols-2 md:grid-cols-4 gap-8 mb-20'>
-                <div className='text-center space-y-4'>
-                  <div className='text-4xl font-light text-amber-400'>50K+</div>
-                  <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
-                    People Trained
+              <div className='max-lg:mt-16'>
+                <hr className='mt-6 border-t border-zinc-800' />
+                <dl className='mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2'>
+                  <div className='flex flex-col gap-y-2 border-b border-dotted border-zinc-800 pb-4 text-amber-400'>
+                    <dt className='text-base/6 text-zinc-200'>
+                      People Trained
+                    </dt>
+                    <dd className='order-first text-6xl font-medium tracking-tight'>
+                      <span>50</span>K+
+                    </dd>
                   </div>
-                </div>
-                <div className='text-center space-y-4'>
-                  <div className='text-4xl font-light text-amber-400'>20+</div>
-                  <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
-                    Countries Impacted
+                  <div className='flex flex-col gap-y-2 border-b border-dotted border-zinc-800 pb-4 text-amber-400'>
+                    <dt className='text-base/6 text-zinc-200'>
+                      Countries Impacted
+                    </dt>
+                    <dd className='order-first text-6xl font-medium tracking-tight'>
+                      <span>20</span>+
+                    </dd>
                   </div>
-                </div>
-                <div className='text-center space-y-4'>
-                  <div className='text-4xl font-light text-amber-400'>2K+</div>
-                  <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
-                    Orphans Educated
+                  <div className='flex flex-col gap-y-2 max-sm:border-b max-sm:border-dotted max-sm:border-zinc-800 max-sm:pb-4 text-amber-400'>
+                    <dt className='text-base/6 text-zinc-200'>
+                      Orphans Educated
+                    </dt>
+                    <dd className='order-first text-6xl font-medium tracking-tight'>
+                      <span className='font-mono'>2</span>K+
+                    </dd>
                   </div>
-                </div>
-                <div className='text-center space-y-4'>
-                  <div className='text-4xl font-light text-amber-400'>400%</div>
-                  <div className='text-zinc-400 text-sm font-light uppercase tracking-wide'>
-                    Average Income Increase
+                  <div className='flex flex-col gap-y-2 text-amber-400'>
+                    <dt className='text-base/6 text-zinc-200'>
+                      Average Income Increase
+                    </dt>
+                    <dd className='order-first text-7xl font-medium tracking-tight'>
+                      <span>400%</span>
+                    </dd>
                   </div>
-                </div>
+                </dl>
               </div>
 
               {/* Women's Empowerment Focus */}
@@ -1690,7 +1691,7 @@ export default function HomePage() {
           </section>
 
           {/* The Hydrogen Harvest Book Section */}
-          <section className='w-full py-40 bg-zinc-950/30'>
+          {/* <section className='w-full py-40 bg-zinc-950/30'>
             <div className='container px-8 md:px-12 max-w-8xl mx-auto'>
               <div className='text-center mb-20'>
                 <Badge className='bg-green-500/10 text-green-400 border-green-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
@@ -1713,7 +1714,6 @@ export default function HomePage() {
                 <div className='relative'>
                   <div className='aspect-[3/4] relative rounded-3xl overflow-hidden bg-gradient-to-br from-green-900/20 to-emerald-900/20 border border-green-500/20'>
                     <Image
-                      // src='/placeholder.svg?height=600&width=450'
                       src='https://images.unsplash.com/photo-1557313773-74c3490a350d?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
                       alt='The Hydrogen Harvest book cover'
                       fill
@@ -1827,7 +1827,6 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Book Highlights */}
               <div className='mt-20 grid md:grid-cols-3 gap-8'>
                 <Card className='bg-black/30 border-zinc-800/30 p-8'>
                   <CardContent className='space-y-6'>
@@ -1875,10 +1874,10 @@ export default function HomePage() {
                 </Card>
               </div>
             </div>
-          </section>
+          </section> */}
 
           {/* Roadmap */}
-          <section id='roadmap' className='w-full py-40 relative'>
+          {/* <section id='roadmap' className='w-full py-40 relative'>
             <div className='absolute inset-0'>
               <Image
                 src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80'
@@ -1907,7 +1906,6 @@ export default function HomePage() {
               </div>
 
               <div className='grid grid-cols-1 sm:grid-cols-2 gap-y-16 justify-items-center'>
-                {/* Q1 2024 */}
                 <div className='flex items-start space-x-8'>
                   <div className='flex-shrink-0'>
                     <div className='w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center'>
@@ -1932,7 +1930,6 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Q2 2024 */}
                 <div className='flex items-start space-x-8'>
                   <div className='flex-shrink-0'>
                     <div className='w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center'>
@@ -1957,7 +1954,6 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Q3 2024 */}
                 <div className='flex items-start space-x-8'>
                   <div className='flex-shrink-0'>
                     <div className='w-16 h-16 bg-blue-500/50 rounded-full flex items-center justify-center border-2 border-blue-500'>
@@ -1984,7 +1980,6 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Q4 2024 */}
                 <div className='flex items-start space-x-8'>
                   <div className='flex-shrink-0'>
                     <div className='w-16 h-16 bg-purple-500/50 rounded-full flex items-center justify-center border-2 border-purple-500'>
@@ -2010,7 +2005,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
 
           {/* Final CTA */}
           <section
@@ -2067,7 +2062,7 @@ export default function HomePage() {
                         </div>
                       </div>
                       <div className='text-center p-8 bg-black/30 rounded-2xl border border-zinc-800/30'>
-                        <div className='text-3xl text-white mb-3'>100K</div>
+                        <div className='text-3xl text-white mb-3'>50-100K</div>
                         <div className='text-zinc-200 text-sm tracking-[0.2em] uppercase'>
                           Total Supply
                         </div>
@@ -2082,7 +2077,7 @@ export default function HomePage() {
 
                     <div className='flex flex-col sm:flex-row gap-6'>
                       <Button
-                        className='flex-1 bg-emerald-500 hover:bg-emerald-600 text-black font-medium py-6 text-xl tracking-[0.1em] uppercase transition-all duration-500'
+                        className='flex-1 bg-emerald-500 hover:bg-emerald-600 text-black font-medium py-7 text-xl tracking-[0.1em] uppercase transition-all duration-500'
                         asChild
                       >
                         <a href={ctaLink} target='_blank' rel='noreferrer'>
@@ -2093,12 +2088,8 @@ export default function HomePage() {
                     </div>
 
                     <div className='text-center space-y-4'>
-                      <p className='text-zinc-400 text-sm font-extralight'>
-                        Affiliate Program Available • Add to MetaMask • Instant
-                        Token Delivery
-                      </p>
                       <p className='text-zinc-500 text-xs font-extralight'>
-                        © 2025 Powered by 0xFactory
+                        © 2025 Powered by Brickken
                       </p>
                     </div>
                   </div>
@@ -2111,12 +2102,12 @@ export default function HomePage() {
         {/* Footer */}
         <footer className='bg-black border-t border-zinc-800/30 py-20'>
           <div className='container px-8 md:px-12 max-w-8xl mx-auto'>
-            <div className='grid gap-16 md:grid-cols-4'>
+            <div className='grid gap-16 md:grid-cols-3'>
               <div className='space-y-8'>
                 <div className='flex items-center space-x-5'>
-                  <div className='w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center'>
+                  {/* <div className='w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center'>
                     <Leaf className='h-7 w-7 text-black' />
-                  </div>
+                  </div> */}
                   <span className='text-3xl font-extralight text-white tracking-[0.2em] uppercase'>
                     Hydrokken
                   </span>
@@ -2205,45 +2196,6 @@ export default function HomePage() {
                       className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
                     >
                       Security Audit
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 className='text-white font-light tracking-[0.1em] uppercase mb-8'>
-                  Community
-                </h4>
-                <ul className='space-y-4'>
-                  <li>
-                    <Link
-                      href='#'
-                      className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
-                    >
-                      Affiliate Program
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href='#'
-                      className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
-                    >
-                      Governance
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href='#'
-                      className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
-                    >
-                      Roadmap
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href='#'
-                      className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
-                    >
-                      Whitepaper
                     </Link>
                   </li>
                 </ul>
