@@ -24,7 +24,9 @@ import * as React from 'react';
 import '@/lib/env';
 
 import { ctaLink } from '@/lib/cta';
+import { cn } from '@/lib/utils';
 
+import { PageContainer } from '@/components/common/page-container';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -36,6 +38,56 @@ import { Card, CardContent } from '@/components/ui/card';
  * You can override the next-env if the type is important to you
  * @see https://stackoverflow.com/questions/68103844/how-to-override-next-js-svg-module-declaration
  */
+
+function SectionBadge({ t, className }: { t: string; className?: string }) {
+  return (
+    <Badge
+      className={cn(
+        'bg-blue-500/20 text-blue-400 border-blue-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase',
+        className
+      )}
+    >
+      {t}
+    </Badge>
+  );
+}
+
+function SectionHeading({
+  t1,
+  t2,
+  t2ClassName,
+  b,
+  description,
+}: {
+  t1: string;
+  t2: string;
+  t2ClassName?: string;
+  b: { t: string; className?: string };
+  description: string;
+}) {
+  return (
+    <div className='text-center mb-20'>
+      <SectionBadge t={b.t} className={b.className} />
+      {/* <Badge className='bg-blue-500/20 text-blue-400 border-blue-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
+        {t1}
+      </Badge> */}
+      <h2 className='text-5xl md:text-6xl font-light text-white tracking-tight leading-tight mb-8'>
+        {t1}
+        <span
+          className={cn(
+            'block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 font-light mt-4',
+            t2ClassName
+          )}
+        >
+          {t2}
+        </span>
+      </h2>
+      <p className='text-xl text-zinc-300 font-extralight leading-relaxed max-w-4xl mx-auto tracking-wide'>
+        {description}
+      </p>
+    </div>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -492,9 +544,20 @@ export default function HomePage() {
 
           {/* About Hydrokken Company */}
           <section id='about' className='w-full py-40 bg-zinc-950/30'>
-            <div className='container px-8 md:px-12 max-w-8xl mx-auto'>
+            <PageContainer size='xl'>
+              <SectionHeading
+                t1='About'
+                t2='Hydrokken'
+                t2ClassName='from-blue-400 to-cyan-400'
+                b={{
+                  t: 'Company Overview',
+                  className: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+                }}
+                description="The world's first security token fully backed 1-to-1 by shares in a natural hydrogen company, bridging clean energy and decentralized finance with full legal structure and investor protection."
+              />
+
               <div className='text-center mb-20'>
-                <Badge className='bg-blue-500/20 text-blue-400 border-blue-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
+                <Badge className='mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
                   Company Overview
                 </Badge>
                 <h2 className='text-4xl md:text-6xl font-light text-white tracking-tight leading-tight mb-8'>
@@ -608,12 +671,12 @@ export default function HomePage() {
                             Tokenized by Brickken (EU Regulated)
                           </span>
                         </div>
-                        <div className='flex items-center space-x-3'>
+                        {/* <div className='flex items-center space-x-3'>
                           <CheckCircle className='h-4 w-4 text-emerald-400 flex-shrink-0' />
                           <span className='text-zinc-300'>
                             Powered by Springbox AI
                           </span>
-                        </div>
+                        </div> */}
                         <div className='flex items-center space-x-3'>
                           <CheckCircle className='h-4 w-4 text-emerald-400 flex-shrink-0' />
                           <span className='text-zinc-300'>
@@ -628,18 +691,18 @@ export default function HomePage() {
 
               {/* Target Audience */}
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
-                <Card className='bg-neutral-900/50 border-zinc-800/30 p-6'>
-                  <CardContent className='space-y-4'>
+                <div className='bg-neutral-900/50 border-zinc-800/30 p-5 border rounded-lg'>
+                  <div className='space-y-4'>
                     <TrendingUp className='h-8 w-8 text-blue-400' />
                     <h4 className='text-white font-medium'>ESG Investors</h4>
                     <p className='text-zinc-400 text-sm font-extralight'>
                       Seeking verifiable impact and sustainable investment
                       opportunities
                     </p>
-                  </CardContent>
-                </Card>
-                <Card className='bg-neutral-900/50 border-zinc-800/30 p-6'>
-                  <CardContent className='space-y-4'>
+                  </div>
+                </div>
+                <div className='bg-neutral-900/50 border-zinc-800/30 p-5 border rounded-lg'>
+                  <div className='space-y-4'>
                     <Building2 className='h-8 w-8 text-emerald-400' />
                     <h4 className='text-white font-medium'>
                       Institutional Investors
@@ -648,19 +711,19 @@ export default function HomePage() {
                       Interested in real-world asset (RWA) tokens with legal
                       clarity
                     </p>
-                  </CardContent>
-                </Card>
-                <Card className='bg-neutral-900/50 border-zinc-800/30 p-6'>
-                  <CardContent className='space-y-4'>
+                  </div>
+                </div>
+                <div className='bg-neutral-900/50 border-zinc-800/30 p-5 border rounded-lg'>
+                  <div className='space-y-4'>
                     <Globe className='h-8 w-8 text-purple-400' />
                     <h4 className='text-white font-medium'>Web3 Communities</h4>
                     <p className='text-zinc-400 text-sm font-extralight'>
                       Seeking legally compliant tokens with real utility
                     </p>
-                  </CardContent>
-                </Card>
-                <Card className='bg-neutral-900/50 border-zinc-800/30 p-6'>
-                  <CardContent className='space-y-4'>
+                  </div>
+                </div>
+                <div className='bg-neutral-900/50 border-zinc-800/30 p-5 border rounded-lg'>
+                  <div className='space-y-4'>
                     <Users className='h-8 w-8 text-amber-400' />
                     <h4 className='text-white font-medium'>
                       Sustainability Leaders
@@ -668,10 +731,10 @@ export default function HomePage() {
                     <p className='text-zinc-400 text-sm font-extralight'>
                       Promoting clean energy and environmental responsibility
                     </p>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </div>
-            </div>
+            </PageContainer>
           </section>
 
           {/* What is Natural Hydrogen */}
@@ -685,7 +748,7 @@ export default function HomePage() {
               />
               <div className='absolute inset-0 bg-black/85'></div>
             </div>
-            <div className='container px-8 md:px-12 max-w-8xl mx-auto relative'>
+            <PageContainer size='xl'>
               <div className='text-center mb-20'>
                 <Badge className='bg-emerald-900/20 text-emerald-400 border-emerald-500/30 mb-2 px-6 py-3 text-sm tracking-[0.15em] uppercase'>
                   Revolutionary Energy Source
@@ -810,7 +873,7 @@ export default function HomePage() {
                   </div>
                 </dl>
               </div>
-            </div>
+            </PageContainer>
           </section>
 
           <section id='performance' className='w-full py-40 relative'>
@@ -823,7 +886,7 @@ export default function HomePage() {
               />
               <div className='absolute inset-0 bg-black/80'></div>
             </div>
-            <div className='container px-8 md:px-12 max-w-8xl mx-auto relative'>
+            <PageContainer size='xl'>
               <div className='text-center mb-24'>
                 <Badge className='bg-emerald-900/20 text-emerald-400 border-emerald-500/30 mb-8 px-6 py-3 text-sm tracking-[0.15em] uppercase'>
                   Unprecedented Performance
@@ -960,12 +1023,12 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </PageContainer>
           </section>
 
           {/* Blockchain Technology */}
           <section id='innovation' className='w-full py-40 bg-zinc-950/30'>
-            <div className='container px-8 md:px-12 max-w-8xl mx-auto'>
+            <PageContainer size='xl'>
               <div className='text-center mb-20'>
                 <Badge className='bg-blue-900/10 text-blue-400 border-blue-500/30 mb-4 sm:mb-2 px-6 py-3 tracking-[0.15em] uppercase'>
                   Cutting-Edge Technology
@@ -1136,7 +1199,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </PageContainer>
           </section>
 
           {/* Trading & Investment */}
@@ -1153,7 +1216,7 @@ export default function HomePage() {
               />
               <div className='absolute inset-0 bg-black/85'></div>
             </div>
-            <div className='container px-8 md:px-12 max-w-8xl mx-auto relative'>
+            <PageContainer size='xl'>
               <div className='text-center mb-20'>
                 <Badge className='bg-amber-900/20 text-amber-400 border-amber-500/30 mb-2 px-6 py-3 text-sm tracking-[0.15em] uppercase'>
                   Investment Opportunity
@@ -1283,7 +1346,7 @@ export default function HomePage() {
                   </div>
                 </dl>
               </div>
-            </div>
+            </PageContainer>
           </section>
 
           {/* Brickken Infrastructure */}
@@ -1297,24 +1360,18 @@ export default function HomePage() {
               />
               <div className='absolute inset-0 bg-black/85'></div>
             </div>
-            <div className='container px-8 md:px-12 max-w-8xl mx-auto relative'>
-              <div className='text-center mb-20'>
-                <Badge className='bg-purple-500/20 text-purple-400 border-purple-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
-                  Trusted Infrastructure
-                </Badge>
-                <h2 className='text-4xl md:text-6xl font-light text-white tracking-tight leading-tight mb-8'>
-                  Powered by
-                  <span className='block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-light mt-4'>
-                    Brickken
-                  </span>
-                </h2>
-                <p className='text-xl text-zinc-300 font-extralight leading-relaxed max-w-4xl mx-auto tracking-wide'>
-                  Europe's leading platform for real-world asset tokenization,
-                  providing the technological robustness, regulatory compliance,
-                  and global reach that powers HYDROKKEN's security token
-                  infrastructure.
-                </p>
-              </div>
+            <PageContainer size='xl'>
+              <SectionHeading
+                t1='Powered by'
+                t2='Brickken'
+                t2ClassName='from-purple-400 to-pink-400'
+                b={{
+                  t: 'Trusted Infrastructure',
+                  className:
+                    'bg-purple-500/20 text-purple-400 border-purple-500/30',
+                }}
+                description="Europe's leading platform for real-world asset tokenization, providing the technological robustness, regulatory compliance, and global reach that powers HYDROKKEN's security token infrastructure."
+              />
 
               <div className='grid lg:grid-cols-2 gap-20 items-center mb-20'>
                 <div className='space-y-12'>
@@ -1463,7 +1520,7 @@ export default function HomePage() {
                   </CardContent>
                 </Card>
               </div>
-            </div>
+            </PageContainer>
           </section>
 
           <section className='w-full py-40 relative' id='the-founder'>
@@ -1476,23 +1533,20 @@ export default function HomePage() {
               />
               <div className='absolute inset-0 bg-black/95'></div>
             </div>
-            <div className='container px-8 md:px-12 max-w-8xl mx-auto relative'>
-              <div className='text-center mb-20'>
-                <Badge className='bg-amber-500/20 text-amber-400 border-amber-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
-                  Visionary Leadership
-                </Badge>
-                <h2 className='text-4xl md:text-6xl font-light text-white tracking-tight leading-tight mb-8'>
-                  Meet the
-                  <span className='block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-400 font-light mt-4'>
-                    Founder
-                  </span>
-                </h2>
-                <p className='text-xl text-zinc-300 font-extralight leading-relaxed max-w-4xl mx-auto tracking-wide'>
-                  El Mostafa Belkhayate - World Champion in AI Applied to
+            <PageContainer size='xl'>
+              <SectionHeading
+                t1='Meet the'
+                t2='Founder'
+                t2ClassName='from-amber-400 to-yellow-400'
+                b={{
+                  t: 'Visionary Leadership',
+                  className:
+                    'bg-amber-500/20 text-amber-400 border-amber-500/30',
+                }}
+                description="El Mostafa Belkhayate - World Champion in AI Applied to
                   Trading, Social Impact Pioneer, and the visionary mind behind
-                  HYDROKKEN's mission to democratize clean energy investment.
-                </p>
-              </div>
+                  HYDROKKEN's mission to democratize clean energy investment."
+              />
 
               <div className='grid lg:grid-cols-2 gap-20 items-center mb-20'>
                 <div className='relative'>
@@ -1687,12 +1741,12 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </PageContainer>
           </section>
 
           {/* The Hydrogen Harvest Book Section */}
           {/* <section className='w-full py-40 bg-zinc-950/30'>
-            <div className='container px-8 md:px-12 max-w-8xl mx-auto'>
+            <PageContainer size='xl'>
               <div className='text-center mb-20'>
                 <Badge className='bg-green-500/10 text-green-400 border-green-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
                   Essential Reading
@@ -1873,7 +1927,7 @@ export default function HomePage() {
                   </CardContent>
                 </Card>
               </div>
-            </div>
+            </PageContainer>
           </section> */}
 
           {/* Roadmap */}
@@ -2101,9 +2155,9 @@ export default function HomePage() {
 
         {/* Footer */}
         <footer className='bg-black border-t border-zinc-800/30 py-20'>
-          <div className='container px-8 md:px-12 max-w-8xl mx-auto'>
-            <div className='grid gap-16 md:grid-cols-3'>
-              <div className='space-y-8'>
+          <PageContainer size='xl'>
+            <div className='grid gap-16 md:grid-cols-3 xl:grid-cols-4'>
+              <div className='space-y-8 xl:col-span-2'>
                 <div className='flex items-center space-x-5'>
                   {/* <div className='w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center'>
                     <Leaf className='h-7 w-7 text-black' />
@@ -2124,39 +2178,47 @@ export default function HomePage() {
               </div>
               <div>
                 <h4 className='text-white font-light tracking-[0.1em] uppercase mb-8'>
-                  Token
+                  Hydrokken
                 </h4>
                 <ul className='space-y-4'>
                   <li>
                     <Link
-                      href='#'
+                      href='#about'
                       className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
                     >
-                      Buy HDKN
+                      About
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href='#'
+                      href='#innovation'
                       className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
                     >
-                      Add to MetaMask
+                      Innovation
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href='#'
+                      href='#performance'
                       className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
                     >
-                      Contract Address
+                      Performance
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href='#'
+                      href='#the-founder'
                       className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
                     >
-                      Tokenomics
+                      The Founder
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href='#trading-and-investment'
+                      className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
+                    >
+                      Trading &amp; Investment
                     </Link>
                   </li>
                 </ul>
@@ -2168,35 +2230,35 @@ export default function HomePage() {
                 <ul className='space-y-4'>
                   <li>
                     <Link
-                      href='#'
+                      href={ctaLink}
+                      target='_blank'
+                      rel='noreferrer'
                       className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
                     >
-                      Natural Hydrogen
+                      Buy HDKN
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href='#hydrogen'
+                      className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
+                    >
+                      Hydrogen
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href='#infrastructure'
+                      className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
+                    >
+                      Brickken
                     </Link>
                   </li>
                   <li>
                     <Link
                       href='#'
                       className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
-                    >
-                      Blockchain Tech
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href='#'
-                      className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
-                    >
-                      Smart Contracts
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href='#'
-                      className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
-                    >
-                      Security Audit
-                    </Link>
+                    ></Link>
                   </li>
                 </ul>
               </div>
@@ -2217,7 +2279,7 @@ export default function HomePage() {
                 </span>
               </div>
             </div>
-          </div>
+          </PageContainer>
         </footer>
       </div>
     </main>
