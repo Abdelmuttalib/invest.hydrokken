@@ -45,7 +45,15 @@ export default function HomePage() {
   return (
     <main>
       <Head>
-        <title>Hi</title>
+        <title>
+          Hydrokken - The world's first security token backed 1-to-1 by natural
+          hydrogen equity, bridging clean energy and decentralized finance with
+          full legal structure.
+        </title>
+        <meta
+          name='description'
+          content='The world’s first security token backed 1-to-1 by natural hydrogen equity, bridging clean energy and decentralized finance with full legal structure.'
+        />
       </Head>
 
       <div className='flex flex-col min-h-screen bg-black'>
@@ -118,7 +126,7 @@ export default function HomePage() {
                 {/* Left Content */}
                 <div className='space-y-16'>
                   <div className='space-y-12'>
-                    <div className='inline-flex items-center space-x-3 bg-zinc-900/30 backdrop-blur-sm rounded-full px-8 py-4 border border-emerald-500/20'>
+                    <div className='inline-flex items-center space-x-3 bg-zinc-900/30 backdrop-blur-sm rounded-full px-4 text-sm md:text-base md:px-8 md:py-4 py-2 border border-emerald-500/20'>
                       <div className='w-2 h-2 bg-emerald-400 rounded-full animate-pulse'></div>
                       <span className='text-emerald-400 tracking-[0.15em] uppercase'>
                         World&apos;s First Natural Hydrogen Security Token
@@ -513,7 +521,7 @@ export default function HomePage() {
                     <h3 className='text-4xl font-light text-white tracking-wide'>
                       Our Foundation
                     </h3>
-                    <div className='w-24 h-px bg-gradient-to-r from-blue-400 to-transparent'></div>
+                    <div className='w-1/2 h-px bg-gradient-to-r from-blue-400 to-transparent'></div>
                     <p className='text-lg text-zinc-300 font-extralight leading-relaxed tracking-wide'>
                       Hydrokken originates from Krechendo Managers, which owns
                       500,000 shares in Hydroma Inc., the global pioneer in
@@ -777,37 +785,34 @@ export default function HomePage() {
                 </div>
               </div>
               {/* Statistics */}
-              <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8'>
-                <div className='text-center space-y-4'>
-                  <div className='text-4xl font-light text-emerald-400'>
-                    100%
+              <div className='max-lg:mt-16'>
+                <hr className='mt-6 border-t border-zinc-800' />
+                <dl className='mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2'>
+                  <div className='flex flex-col gap-y-2 border-b border-dotted border-zinc-800 pb-4 text-emerald-400'>
+                    <dt className='text-base/6 text-zinc-200'>Clean Energy</dt>
+                    <dd className='order-first text-6xl font-medium tracking-tight'>
+                      <span>100</span>%
+                    </dd>
                   </div>
-                  <div className='text-zinc-200 uppercase tracking-wide'>
-                    Clean Energy
+                  <div className='flex flex-col gap-y-2 border-b border-dotted border-zinc-800 pb-4 text-emerald-400'>
+                    <dt className='text-base/6 text-zinc-200'>Reserve Value</dt>
+                    <dd className='order-first text-6xl font-medium tracking-tight'>
+                      $<span>1.2B</span>+
+                    </dd>
                   </div>
-                </div>
-                <div className='text-center space-y-4'>
-                  <div className='text-4xl font-light text-emerald-400'>
-                    $1.2B+
+                  <div className='flex flex-col gap-y-2 max-sm:border-b max-sm:border-dotted max-sm:border-zinc-800 max-sm:pb-4 text-emerald-400'>
+                    <dt className='text-base/6 text-zinc-200'>Emissions</dt>
+                    <dd className='order-first text-6xl font-medium tracking-tight'>
+                      <span className='font-mono'>0</span> Zero
+                    </dd>
                   </div>
-                  <div className='text-zinc-200 uppercase tracking-wide'>
-                    Reserve Value
+                  <div className='flex flex-col gap-y-2 text-emerald-400'>
+                    <dt className='text-base/6 text-zinc-200'>Potential</dt>
+                    <dd className='order-first text-7xl font-medium tracking-tight'>
+                      <span>∞</span>
+                    </dd>
                   </div>
-                </div>
-                <div className='text-center space-y-4'>
-                  <div className='text-4xl font-light text-emerald-400'>
-                    Zero
-                  </div>
-                  <div className='text-zinc-200 uppercase tracking-wide'>
-                    Emissions
-                  </div>
-                </div>
-                <div className='text-center space-y-4'>
-                  <div className='text-4xl font-light text-emerald-400'>∞</div>
-                  <div className='text-zinc-200 uppercase tracking-wide'>
-                    Potential
-                  </div>
-                </div>
+                </dl>
               </div>
             </div>
           </section>
@@ -824,16 +829,12 @@ export default function HomePage() {
             </div>
             <div className='container px-8 md:px-12 max-w-8xl mx-auto relative'>
               <div className='text-center mb-24'>
-                <div className='inline-flex items-center space-x-4 mb-12'>
-                  <div className='w-1 h-1 bg-emerald-400 rounded-full'></div>
-                  <Badge className='bg-transparent text-emerald-400 border-emerald-500/30 px-8 py-3 text-sm font-light tracking-[0.15em] uppercase'>
-                    Unprecedented Performance
-                  </Badge>
-                  <div className='w-1 h-1 bg-emerald-400 rounded-full'></div>
-                </div>
-                <h2 className='text-6xl md:text-8xl font-extralight text-white tracking-tight leading-tight mb-8'>
+                <Badge className='bg-emerald-900/20 text-emerald-400 border-emerald-500/30 mb-8 px-6 py-3 text-sm tracking-[0.15em] uppercase'>
+                  Unprecedented Performance
+                </Badge>
+                <h2 className='text-6xl md:text-7xl font-light text-white tracking-tight leading-tight mb-8'>
                   Market
-                  <span className='block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 font-thin mt-4'>
+                  <span className='inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 font-light ml-2 mt-4'>
                     Dominance
                   </span>
                 </h2>
@@ -945,7 +946,7 @@ export default function HomePage() {
                           Token Supply
                         </span>
                         <span className='text-white font-light text-xl tracking-wide'>
-                          100,000 HDKN
+                          50,000 - 100,000 HDKN
                         </span>
                       </div>
                       <div className='flex justify-between items-center py-4'>
@@ -953,7 +954,7 @@ export default function HomePage() {
                           Launch Timeline
                         </span>
                         <span className='text-white font-light text-xl tracking-wide'>
-                          Q2 2024
+                          Q3 2025
                         </span>
                       </div>
                     </div>
@@ -1331,7 +1332,7 @@ export default function HomePage() {
                     <h3 className='text-4xl font-light text-white tracking-wide'>
                       Why Brickken
                     </h3>
-                    <div className='w-24 h-px bg-gradient-to-r from-purple-400 to-transparent'></div>
+                    <div className='w-1/2 h-px bg-gradient-to-r from-purple-400 to-transparent'></div>
                     <p className='text-lg text-zinc-300 font-extralight leading-relaxed tracking-wide'>
                       Based in Barcelona, Brickken transforms traditional equity
                       into legally compliant, blockchain-powered
@@ -1539,7 +1540,7 @@ export default function HomePage() {
                     <h3 className='text-4xl font-light text-white tracking-wide'>
                       Technology Serving Humanity
                     </h3>
-                    <div className='w-24 h-px bg-gradient-to-r from-amber-400 to-transparent'></div>
+                    <div className='w-1/2 h-px bg-gradient-to-r from-amber-400 to-transparent'></div>
                     <p className='text-lg text-zinc-300 font-extralight leading-relaxed tracking-wide'>
                       "Technology must serve people — not the other way around."
                       This philosophy has guided El Mostafa's 20+ year journey

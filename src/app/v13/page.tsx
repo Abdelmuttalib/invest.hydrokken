@@ -66,12 +66,7 @@ export default function Component() {
           </Link>
         </nav>
         <div className='ml-12'>
-          <Button
-            className='bg-emerald-500 hover:bg-emerald-600 text-black font-medium px-8 py-3 tracking-[0.1em] uppercase text-sm transition-all duration-300 shadow-lg shadow-emerald-500/20'
-            onClick={() =>
-              window.open('https://platform.hydrokken.com', '_blank')
-            }
-          >
+          <Button className='bg-emerald-500 hover:bg-emerald-600 text-black font-medium px-8 py-3 tracking-[0.1em] uppercase text-sm transition-all duration-300 shadow-lg shadow-emerald-500/20'>
             Launch Platform
             <ExternalLink className='ml-2 h-4 w-4' />
           </Button>
@@ -183,12 +178,6 @@ export default function Component() {
                   <Button
                     size='lg'
                     className='bg-emerald-500 hover:bg-emerald-600 text-black font-medium px-12 py-4 text-lg tracking-[0.1em] uppercase transition-all duration-300 shadow-xl shadow-emerald-500/20'
-                    onClick={() =>
-                      window.open(
-                        'https://platform.hydrokken.com/buy',
-                        '_blank'
-                      )
-                    }
                   >
                     Buy HDKN Tokens
                     <ExternalLink className='ml-3 h-5 w-5' />
@@ -1473,27 +1462,11 @@ export default function Component() {
                   </div>
 
                   <div className='flex flex-col sm:flex-row gap-6'>
-                    <Button
-                      className='flex-1 bg-emerald-500 hover:bg-emerald-600 text-black font-medium py-6 text-xl tracking-[0.1em] uppercase transition-all duration-500'
-                      onClick={() =>
-                        window.open(
-                          'https://platform.hydrokken.com/buy',
-                          '_blank'
-                        )
-                      }
-                    >
+                    <Button className='flex-1 bg-emerald-500 hover:bg-emerald-600 text-black font-medium py-6 text-xl tracking-[0.1em] uppercase transition-all duration-500'>
                       Buy HDKN Tokens
                       <ExternalLink className='ml-4 h-6 w-6' />
                     </Button>
-                    <Button
-                      className='flex-1 bg-zinc-700 hover:bg-zinc-600 text-white font-medium py-6 text-xl tracking-[0.1em] uppercase transition-all duration-500'
-                      onClick={() =>
-                        window.open(
-                          'https://platform.hydrokken.com/register',
-                          '_blank'
-                        )
-                      }
-                    >
+                    <Button className='flex-1 bg-zinc-700 hover:bg-zinc-600 text-white font-medium py-6 text-xl tracking-[0.1em] uppercase transition-all duration-500'>
                       Create Account
                       <ExternalLink className='ml-4 h-6 w-6' />
                     </Button>
@@ -1545,12 +1518,6 @@ export default function Component() {
                   <Link
                     href='#'
                     className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
-                    onClick={() =>
-                      window.open(
-                        'https://platform.hydrokken.com/buy',
-                        '_blank'
-                      )
-                    }
                   >
                     Buy HDKN Tokens
                   </Link>
@@ -1559,12 +1526,6 @@ export default function Component() {
                   <Link
                     href='#'
                     className='text-zinc-400 hover:text-emerald-400 font-extralight transition-colors tracking-wide'
-                    onClick={() =>
-                      window.open(
-                        'https://platform.hydrokken.com/register',
-                        '_blank'
-                      )
-                    }
                   >
                     Create Account
                   </Link>
