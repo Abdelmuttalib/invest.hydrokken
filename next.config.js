@@ -7,12 +7,9 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
 
+  output: 'export',
   images: {
-    domains: [
-      'images.unsplash.com',
-      'kajabi-storefronts-production.kajabi-cdn.com',
-      'bknmaster-master-dapppublicbucket.s3.amazonaws.com',
-    ],
+    unoptimized: true, // Required to disable next/image
   },
 
   transpilePackages: ['geist'],
