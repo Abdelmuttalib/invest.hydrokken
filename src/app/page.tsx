@@ -24,71 +24,14 @@ import * as React from 'react';
 import '@/lib/env';
 
 import { ctaLink } from '@/lib/cta';
-import { cn } from '@/lib/utils';
 
 import { PageContainer } from '@/components/common/page-container';
+import { SectionHeading } from '@/components/common/section';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
-/**
- * SVGR Support
- * Caveat: No React Props Type.
- *
- * You can override the next-env if the type is important to you
- * @see https://stackoverflow.com/questions/68103844/how-to-override-next-js-svg-module-declaration
- */
-
-function SectionBadge({ t, className }: { t: string; className?: string }) {
-  return (
-    <Badge
-      className={cn(
-        'bg-blue-500/20 text-blue-400 border-blue-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase',
-        className
-      )}
-    >
-      {t}
-    </Badge>
-  );
-}
-
-function SectionHeading({
-  t1,
-  t2,
-  t2ClassName,
-  b,
-  description,
-}: {
-  t1: string;
-  t2: string;
-  t2ClassName?: string;
-  b: { t: string; className?: string };
-  description: string;
-}) {
-  return (
-    <div className='text-center mb-20'>
-      <SectionBadge t={b.t} className={b.className} />
-      {/* <Badge className='bg-blue-500/20 text-blue-400 border-blue-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
-        {t1}
-      </Badge> */}
-      {/* xl:text-7xl */}
-      <h2 className='text-5xl md:text-6xl font-light text-white tracking-tight leading-tight mb-8'>
-        {t1}
-        <span
-          className={cn(
-            'block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 font-light mt-4',
-            t2ClassName
-          )}
-        >
-          {t2}
-        </span>
-      </h2>
-      <p className='text-xl text-zinc-300 font-extralight leading-relaxed max-w-4xl mx-auto tracking-wide'>
-        {description}
-      </p>
-    </div>
-  );
-}
+export const dynamic = 'force-static';
 
 export default function HomePage() {
   return (
@@ -322,9 +265,9 @@ export default function HomePage() {
                         <div className="text-sm text-emerald-400 uppercase tracking-wider font-medium">
                           Current Price
                         </div>
-                        <div className="text-4xl font-bold text-white">$34</div>
+                        <div className="text-4xl font-bold text-white">$32</div>
                         <div className="text-zinc-300 font-medium">
-                          1 HDKN = $34 USDT
+                          1 HDKN = $32 USDT
                         </div>
                         <div className="inline-flex items-center space-x-2 bg-emerald-500/20 rounded-full px-4 py-2">
                           <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
@@ -456,10 +399,10 @@ export default function HomePage() {
                         Listing Price
                       </div>
                       <div className="text-3xl font-bold text-emerald-400">
-                        $34
+                        $32
                       </div>
                       <div className="text-sm text-zinc-300">
-                        1 HDKN = $34 USDT
+                        1 HDKN = $32 USDT
                       </div>
                     </div>
 
@@ -1327,7 +1270,7 @@ export default function HomePage() {
                   <div className='flex flex-col gap-y-2 border-b border-dotted border-zinc-800 pb-4 text-amber-400'>
                     <dt className='text-base/6 text-zinc-200'>Current Price</dt>
                     <dd className='order-first text-6xl font-medium tracking-tight'>
-                      $<span>34</span>
+                      $<span>32</span>
                     </dd>
                   </div>
                   <div className='flex flex-col gap-y-2 border-b border-dotted border-zinc-800 pb-4 text-amber-400'>
@@ -1691,7 +1634,7 @@ export default function HomePage() {
               </div>
 
               {/* Women's Empowerment Focus */}
-              <div className='bg-black/30 backdrop-blur-sm rounded-3xl border border-zinc-800/30 p-12'>
+              <div className='bg-black/30 backdrop-blur-sm rounded-3xl border border-zinc-800/30 p-12 mt-20'>
                 <div className='text-center mb-12'>
                   <h3 className='text-3xl font-light text-white mb-6'>
                     Champion of Women's Economic Leadership
@@ -2077,7 +2020,7 @@ export default function HomePage() {
               />
               <div className='absolute inset-0 bg-black/60'></div>
             </div>
-            <div className='container px-8 md:px-12 max-w-6xl mx-auto relative'>
+            <PageContainer className='relative'>
               <div className='text-center space-y-20'>
                 <div className='space-y-12'>
                   <h2 className='text-6xl md:text-7xl font-normal text-white tracking-tight leading-tight'>
@@ -2094,7 +2037,7 @@ export default function HomePage() {
                   </p>
                 </div>
 
-                <div className='bg-zinc-950/90 rounded-3xl border border-zinc-800/30 p-10 sm:p-16 max-w-4xl mx-auto'>
+                <div className='bg-zinc-950/90 rounded-3xl border border-zinc-800/30 p-4 sm:p-10 md:p-16 max-w-4xl mx-auto'>
                   <div className='space-y-12'>
                     <div className='text-center space-y-6'>
                       <h3 className='text-4xl text-white tracking-wide'>
@@ -2111,7 +2054,7 @@ export default function HomePage() {
                     <div className='grid grid-cols-1 sm:grid-cols-3 gap-8'>
                       <div className='text-center p-8 bg-black/30 rounded-2xl border border-zinc-800/30'>
                         <div className='text-3xl text-emerald-400 mb-3'>
-                          $34
+                          $32
                         </div>
                         <div className='text-zinc-200 text-sm tracking-[0.2em] uppercase'>
                           Current Price
@@ -2133,7 +2076,7 @@ export default function HomePage() {
 
                     <div className='flex flex-col sm:flex-row gap-6'>
                       <Button
-                        className='flex-1 bg-emerald-500 hover:bg-emerald-600 text-black font-medium py-7 text-xl tracking-[0.1em] uppercase transition-all duration-500'
+                        className='flex-1 bg-emerald-500 hover:bg-emerald-600 text-black font-medium py-4 sm:py-7 text-xl tracking-[0.1em] uppercase transition-all duration-500'
                         asChild
                       >
                         <a href={ctaLink} target='_blank' rel='noreferrer'>
@@ -2151,7 +2094,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </PageContainer>
           </section>
         </main>
 

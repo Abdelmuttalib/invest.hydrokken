@@ -4,8 +4,8 @@
  */
 module.exports = {
   // !STARTERCONF Change the siteUrl
-  /** Without additional '/' on the end, e.g. https://invest.hydrokken.com */
-  siteUrl: 'https://invest.hydrokken.com',
+  /** Without additional '/' on the end, e.g. https://hydrokken.com */
+  siteUrl: 'https://hydrokken.com',
   generateRobotsTxt: true,
   robotsTxtOptions: {
     policies: [{ userAgent: '*', allow: '/' }],

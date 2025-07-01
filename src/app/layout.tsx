@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   // authors: [
   //   {
   //     name: 'Theodorus Clarence',
-  //     url: 'https://invest.hydrokken.com',
+  //     url: 'https://hydrokken.com',
   //   },
   // ],
 };
