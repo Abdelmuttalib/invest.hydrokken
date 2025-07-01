@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import {
   ArrowRight,
   Atom,
@@ -18,7 +19,6 @@ import {
   Zap,
 } from 'lucide-react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
 import '@/lib/env';
@@ -71,6 +71,7 @@ function SectionHeading({
       {/* <Badge className='bg-blue-500/20 text-blue-400 border-blue-500/30 mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
         {t1}
       </Badge> */}
+      {/* xl:text-7xl */}
       <h2 className='text-5xl md:text-6xl font-light text-white tracking-tight leading-tight mb-8'>
         {t1}
         <span
@@ -155,15 +156,12 @@ export default function HomePage() {
           {/* Hero Section */}
           <section className='w-full min-h-screen relative overflow-hidden flex items-center py-16'>
             <div className='absolute inset-0'>
-              <Image
-                src='https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-                // src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80"
-                // src="https://images.unsplash.com/photo-1644191199586-789b1d75c8c9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fGNyeXB0b3xlbnwwfHwwfHx8MA%3D%3D"
+              <img
+                src='/images/blockchain.webp'
                 alt='Futuristic hydrogen energy facility with glowing blue energy streams'
-                fill
-                className='object-cover'
-                priority
-                quality={100}
+                className='absolute inset-0 w-full h-full object-cover'
+                loading='lazy'
+                decoding='async'
               />
               <div className='absolute inset-0 bg-black/70'></div>
               <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent'></div>
@@ -556,7 +554,7 @@ export default function HomePage() {
                 description="The world's first security token fully backed 1-to-1 by shares in a natural hydrogen company, bridging clean energy and decentralized finance with full legal structure and investor protection."
               />
 
-              <div className='text-center mb-20'>
+              {/* <div className='text-center mb-20'>
                 <Badge className='mb-8 px-6 py-3 text-sm font-light tracking-[0.15em] uppercase'>
                   Company Overview
                 </Badge>
@@ -572,7 +570,7 @@ export default function HomePage() {
                   decentralized finance with full legal structure and investor
                   protection.
                 </p>
-              </div>
+              </div> */}
 
               <div className='grid lg:grid-cols-2 gap-20 items-center mb-20'>
                 <div className='space-y-12'>
@@ -645,11 +643,11 @@ export default function HomePage() {
                 </div>
 
                 <div className='relative'>
-                  <Image
-                    src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                  <img
+                    src='/images/analytics.webp'
                     alt="Modern corporate headquarters representing Hydrokken's professional foundation"
-                    width={600}
-                    height={400}
+                    width='600'
+                    height='400'
                     className='rounded-3xl'
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-3xl'></div>
@@ -739,15 +737,6 @@ export default function HomePage() {
 
           {/* What is Natural Hydrogen */}
           <section id='hydrogen' className='w-full py-40 relative'>
-            <div className='absolute inset-0'>
-              <Image
-                src='https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80'
-                alt='Clean hydrogen energy production facility with blue flames'
-                fill
-                className='object-cover opacity-15'
-              />
-              <div className='absolute inset-0 bg-black/85'></div>
-            </div>
             <PageContainer size='xl'>
               <div className='text-center mb-20'>
                 <Badge className='bg-emerald-900/20 text-emerald-400 border-emerald-500/30 mb-2 px-6 py-3 text-sm tracking-[0.15em] uppercase'>
@@ -769,12 +758,12 @@ export default function HomePage() {
 
               <div className='relative mb-20'>
                 {/* Background Image */}
-                <Image
-                  src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                <img
+                  src='/images/planet-earth.webp'
                   alt='Hydrogen molecule structure'
-                  fill
-                  className='object-cover z-0 rounded-3xl'
-                  priority
+                  className='absolute inset-0 w-full h-full object-cover z-0 rounded-3xl'
+                  loading='lazy'
+                  decoding='async'
                 />
                 {/* Optional dark overlay */}
                 <div className='absolute inset-0 bg-black/60 z-10 rounded-3xl' />
@@ -877,17 +866,22 @@ export default function HomePage() {
           </section>
 
           <section id='performance' className='w-full py-40 relative'>
-            <div className='absolute inset-0'>
-              <Image
-                src='https://images.unsplash.com/photo-1642790106117-e829e14a795f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80'
-                alt='Abstract financial data visualization with glowing elements'
-                fill
-                className='object-cover opacity-15'
-              />
-              <div className='absolute inset-0 bg-black/80'></div>
-            </div>
             <PageContainer size='xl'>
-              <div className='text-center mb-24'>
+              <SectionHeading
+                t1='Market'
+                t2='Dominance'
+                t2ClassName='from-emerald-400 to-teal-400'
+                b={{
+                  t: 'Unprecedented Performance',
+                  className:
+                    'bg-emerald-900/20 text-emerald-400 border-emerald-500/30',
+                }}
+                description="HDKN's inaugural performance establishes new
+                benchmarks for institutional cryptocurrency investment,
+                demonstrating unparalleled market confidence and execution
+                excellence."
+              />
+              {/* <div className='text-center mb-24'>
                 <Badge className='bg-emerald-900/20 text-emerald-400 border-emerald-500/30 mb-8 px-6 py-3 text-sm tracking-[0.15em] uppercase'>
                   Unprecedented Performance
                 </Badge>
@@ -903,7 +897,7 @@ export default function HomePage() {
                   demonstrating unparalleled market confidence and execution
                   excellence.
                 </p>
-              </div>
+              </div> */}
 
               <div className='grid grid-cols-1 lg:grid-cols-2 gap-20'>
                 {/* Round A Success */}
@@ -915,7 +909,7 @@ export default function HomePage() {
                         Round A • Complete Success
                       </span>
                     </div>
-                    <h3 className='text-5xl md:text-6xl font-extralight text-white tracking-tight leading-tight'>
+                    <h3 className='text-4xl md:text-5xl font-extralight text-white tracking-tight leading-tight'>
                       Sold Out in
                       <span className='block text-zinc-300 font-thin mt-2'>
                         24 Hours
@@ -964,10 +958,10 @@ export default function HomePage() {
                     <div className='flex items-center space-x-6'>
                       <div className='w-4 h-4 bg-zinc-600 rounded-full'></div>
                       <span className='text-zinc-400 font-light text-sm tracking-[0.2em] uppercase'>
-                        Round B • Exclusive Access
+                        Round B • Launched
                       </span>
                     </div>
-                    <h3 className='text-5xl md:text-6xl font-extralight text-white tracking-tight leading-tight'>
+                    <h3 className='text-4xl md:text-5xl font-extralight text-white tracking-tight leading-tight'>
                       Investment
                       <span className='block text-zinc-300 font-thin mt-2'>
                         Excellence
@@ -1013,12 +1007,21 @@ export default function HomePage() {
                           Launch Timeline
                         </span>
                         <span className='text-white font-light text-xl tracking-wide'>
-                          Q3 2025
+                          <span className='text-emerald-400 font-light'>
+                            Launched
+                            {/* on{' '} */}
+                          </span>
+                          {/* Q3 2025 */}
                         </span>
                       </div>
                     </div>
-                    <Button className='w-full bg-emerald-500 hover:bg-emerald-600 text-black font-medium py-5 text-lg tracking-[0.1em] uppercase mt-8 transition-all duration-300'>
-                      Secure Position
+                    <Button
+                      className='w-full bg-emerald-500 hover:bg-emerald-600 text-black font-medium py-6 text-lg tracking-[0.1em] uppercase mt-8 transition-all duration-300'
+                      asChild
+                    >
+                      <a href={ctaLink} target='_blank' rel='noreferrer'>
+                        Secure Position
+                      </a>
                     </Button>
                   </div>
                 </div>
@@ -1029,7 +1032,20 @@ export default function HomePage() {
           {/* Blockchain Technology */}
           <section id='innovation' className='w-full py-40 bg-zinc-950/30'>
             <PageContainer size='xl'>
-              <div className='text-center mb-20'>
+              <SectionHeading
+                t1='Blockchain'
+                t2='Innovation'
+                t2ClassName='from-blue-400 to-cyan-400'
+                b={{
+                  t: 'Cutting-Edge Technology',
+                  className: 'bg-blue-900/10 text-blue-400 border-blue-500/30',
+                }}
+                description='HDKN leverages advanced blockchain technology to create
+                transparent, secure, and efficient tokenization of natural
+                hydrogen assets, enabling global participation in the clean
+                energy revolution.'
+              />
+              {/* <div className='text-center mb-20'>
                 <Badge className='bg-blue-900/10 text-blue-400 border-blue-500/30 mb-4 sm:mb-2 px-6 py-3 tracking-[0.15em] uppercase'>
                   Cutting-Edge Technology
                 </Badge>
@@ -1045,16 +1061,16 @@ export default function HomePage() {
                   hydrogen assets, enabling global participation in the clean
                   energy revolution.
                 </p>
-              </div>
+              </div> */}
 
               <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20'>
                 <div className='relative h-72 w-full'>
-                  <Image
-                    src='https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                  <img
+                    src='/images/blockchain.webp'
                     alt='Blockchain network visualization with glowing nodes'
-                    fill
-                    quality={100}
-                    className='rounded-2xl object-cover w-full border border-zinc-400'
+                    className='absolute inset-0 w-full h-full object-cover rounded-2xl border border-zinc-400'
+                    loading='lazy'
+                    decoding='async'
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black/90 to-transparent'></div>
                   <div className='absolute bottom-6 left-6 right-6'>
@@ -1065,12 +1081,12 @@ export default function HomePage() {
                 </div>
 
                 <div className='relative h-72 w-full'>
-                  <Image
-                    src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                  <img
+                    src='/images/trade-dashboard.webp'
                     alt='Digital trading interface with cryptocurrency charts'
-                    fill
-                    quality={100}
-                    className='rounded-2xl object-cover w-full border border-zinc-400'
+                    className='absolute inset-0 w-full h-full object-cover rounded-2xl border border-zinc-400'
+                    loading='lazy'
+                    decoding='async'
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black/90 to-transparent'></div>
                   <div className='absolute bottom-6 left-6 right-6'>
@@ -1081,12 +1097,12 @@ export default function HomePage() {
                 </div>
 
                 <div className='relative h-72 w-full'>
-                  <Image
-                    src='https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                  <img
+                    src='/images/credit-security.webp'
                     alt='Secure digital vault with encryption symbols'
-                    fill
-                    quality={100}
-                    className='rounded-2xl object-cover w-full border border-zinc-400'
+                    className='absolute inset-0 w-full h-full object-cover rounded-2xl border border-zinc-400'
+                    loading='lazy'
+                    decoding='async'
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black/90 to-transparent'></div>
                   <div className='absolute bottom-6 left-6 right-6'>
@@ -1207,32 +1223,18 @@ export default function HomePage() {
             className='w-full py-40 relative'
             id='trading-and-investment'
           >
-            <div className='absolute inset-0'>
-              <Image
-                src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80'
-                alt='Professional trading desk with multiple monitors showing financial data'
-                fill
-                className='object-cover opacity-10'
-              />
-              <div className='absolute inset-0 bg-black/85'></div>
-            </div>
             <PageContainer size='xl'>
-              <div className='text-center mb-20'>
-                <Badge className='bg-amber-900/20 text-amber-400 border-amber-500/30 mb-2 px-6 py-3 text-sm tracking-[0.15em] uppercase'>
-                  Investment Opportunity
-                </Badge>
-                <h2 className='text-6xl md:text-7xl font-light text-white tracking-tight leading-tight mb-8'>
-                  Trading &
-                  <span className='inline-block ml-2 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-400 font-light mt-4'>
-                    Investment
-                  </span>
-                </h2>
-                <p className='text-2xl text-zinc-300 font-extralight leading-relaxed max-w-4xl mx-auto tracking-wide'>
-                  HDKN offers institutional and retail investors unprecedented
-                  access to the natural hydrogen market through a regulated,
-                  transparent, and liquid investment vehicle.
-                </p>
-              </div>
+              <SectionHeading
+                t1='Trading &'
+                t2='Investment'
+                t2ClassName='ml-2 inline-block from-amber-400 to-yellow-400'
+                b={{
+                  t: 'Investment Opportunity',
+                  className:
+                    'bg-amber-900/20 text-amber-400 border-amber-500/30',
+                }}
+                description='HDKN offers institutional and retail investors unprecedented access to the natural hydrogen market through a regulated, transparent, and liquid investment vehicle.'
+              />
 
               <div className='grid lg:grid-cols-2 gap-20 items-center mb-20'>
                 <div className='space-y-12'>
@@ -1291,7 +1293,7 @@ export default function HomePage() {
                       <div className='w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0'>
                         <Users className='h-6 w-6 text-amber-400' />
                       </div>
-                      <div className=''>
+                      <div>
                         <h4 className='text-2xl text-white'>
                           Community Governance
                         </h4>
@@ -1305,12 +1307,14 @@ export default function HomePage() {
                 </div>
 
                 <div className='relative'>
-                  <Image
-                    src='https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                  <img
+                    src='/images/work-computer.webp'
                     alt='Financial growth chart with upward trending arrows'
-                    width={600}
-                    height={400}
+                    width='600'
+                    height='400'
                     className='rounded-3xl'
+                    loading='lazy'
+                    decoding='async'
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-3xl'></div>
                 </div>
@@ -1352,14 +1356,16 @@ export default function HomePage() {
           {/* Brickken Infrastructure */}
           <section id='infrastructure' className='w-full py-40 relative'>
             <div className='absolute inset-0'>
-              <Image
-                src='https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80'
+              <img
+                src='/images/blockchain.webp'
                 alt='Advanced blockchain infrastructure and technology'
-                fill
-                className='object-cover'
+                className='absolute inset-0 w-full h-full object-cover'
+                loading='lazy'
+                decoding='async'
               />
               <div className='absolute inset-0 bg-black/85'></div>
             </div>
+
             <PageContainer size='xl'>
               <SectionHeading
                 t1='Powered by'
@@ -1440,12 +1446,14 @@ export default function HomePage() {
                 </div>
 
                 <div className='relative'>
-                  <Image
-                    src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                  <img
+                    src='/images/trade-dashboard.webp'
                     alt='Brickken platform interface showing tokenization dashboard'
-                    width={600}
-                    height={400}
+                    width='600'
+                    height='400'
                     className='rounded-3xl'
+                    loading='lazy'
+                    decoding='async'
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-3xl'></div>
                   <div className='absolute bottom-8 left-8 right-8'>
@@ -1524,15 +1532,6 @@ export default function HomePage() {
           </section>
 
           <section className='w-full py-40 relative' id='the-founder'>
-            <div className='absolute inset-0'>
-              <Image
-                src='https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80'
-                alt='Professional portrait setting representing leadership and innovation'
-                fill
-                className='object-cover opacity-5'
-              />
-              <div className='absolute inset-0 bg-black/95'></div>
-            </div>
             <PageContainer size='xl'>
               <SectionHeading
                 t1='Meet the'
@@ -1551,12 +1550,14 @@ export default function HomePage() {
               <div className='grid lg:grid-cols-2 gap-20 items-center mb-20'>
                 <div className='relative'>
                   <div className='aspect-[4/5] relative rounded-3xl overflow-hidden'>
-                    <Image
-                      src='https://bknmaster-master-dapppublicbucket.s3.amazonaws.com/6e259fee-5f59-4c6c-b547-19e634882b4a/publish/assets/teamImage0.png'
+                    <img
+                      src='/images/the-founder-mr-mostafa.webp'
                       alt='El Mostafa Belkhayate - Founder of HYDROKKEN and Springbox AI'
-                      fill
-                      className='object-cover'
+                      className='absolute inset-0 w-full h-full object-cover'
+                      loading='lazy'
+                      decoding='async'
                     />
+
                     <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent'></div>
                     <div className='absolute bottom-8 left-8 right-8'>
                       <div className='bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-zinc-700/50'>
@@ -2067,11 +2068,12 @@ export default function HomePage() {
             className='w-full py-40 border-y border-zinc-800/30 relative'
           >
             <div className='absolute inset-0'>
-              <Image
-                src='https://images.unsplash.com/photo-1695779539236-362815cf2df1?q=80&w=2066&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+              <img
+                src='/images/buildings.webp'
                 alt='Elegant abstract composition representing growth and success'
-                fill
-                className='object-cover opacity-8'
+                className='absolute inset-0 w-full h-full object-cover opacity-8'
+                loading='lazy'
+                decoding='async'
               />
               <div className='absolute inset-0 bg-black/60'></div>
             </div>
