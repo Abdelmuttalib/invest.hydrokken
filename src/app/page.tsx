@@ -325,8 +325,6 @@ export default function HomePage() {
 
                         <div className='text-center space-y-3'>
                           <div className='flex items-center justify-center space-x-4 text-xs text-zinc-500'>
-                            <span>Affiliate Program</span>
-                            <span>•</span>
                             <span>Instant Delivery</span>
                             <span>•</span>
                             <span>24/7 Support</span>
@@ -901,7 +899,7 @@ export default function HomePage() {
                     <div className='flex items-center space-x-6'>
                       <div className='w-4 h-4 bg-zinc-600 rounded-full'></div>
                       <span className='text-zinc-400 font-light text-sm tracking-[0.2em] uppercase'>
-                        Round B • Launched
+                        Round B • Launch on Q3 2025
                       </span>
                     </div>
                     <h3 className='text-4xl md:text-5xl font-extralight text-white tracking-tight leading-tight'>
@@ -950,11 +948,8 @@ export default function HomePage() {
                           Launch Timeline
                         </span>
                         <span className='text-white font-light text-xl tracking-wide'>
-                          <span className='text-emerald-400 font-light'>
-                            Launched
-                            {/* on{' '} */}
-                          </span>
-                          {/* Q3 2025 */}
+                          {/* <span className='font-light'>Launch on </span> */}
+                          Q3 2025
                         </span>
                       </div>
                     </div>
